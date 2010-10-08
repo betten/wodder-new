@@ -1,4 +1,12 @@
 WodderNew::Application.routes.draw do
+  get "users/signup"
+
+  get "users/signin"
+
+  get "users/signout"
+
+  get "users/view"
+
   get "wods/all"
 
   get "wods/gym"
