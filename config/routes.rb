@@ -1,4 +1,12 @@
 WodderNew::Application.routes.draw do
+  get "wods/all"
+
+  get "wods/gym"
+
+  get "wods/user"
+
+  get "wods/new"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -49,6 +57,8 @@ WodderNew::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
+
+  root :to => "wods#all"
 
   # See how all your routes lay out with "rake routes"
 
