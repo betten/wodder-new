@@ -1,0 +1,11 @@
+!!!
+%html
+%head
+  %title Crossfit Wodder
+  = stylesheet_link_tag 'reset'
+  = yield :css
+  = yield :js
+  = csrf_meta_tag
+%body
+  %h1 crossfit wodder
+  = yield
