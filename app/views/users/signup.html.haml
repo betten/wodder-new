@@ -1,0 +1,16 @@
+%form{:action => '/users/signup', :method => 'post'}
+  %input{:type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token}
+  - if flash[:signup_errors]
+    .errors
+      = flash[:signup_errors]
+  %input{:type => 'hidden', :value => 'hi'}
+  %label
+    email:
+    %input{:type => 'text', :name => 'email'}
+  %label
+    password:
+    %input{:type => 'password', :name => 'password'}
+  %label
+    confirm password:
+    %input{:type => 'password', :name => 'password_confirmation'}
+  %input{:type => 'submit', :value => 'signup'}

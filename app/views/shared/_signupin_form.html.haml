@@ -1,0 +1,16 @@
+%form{:action => '/users/signin', :method=> 'post'}
+  %input{:type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token}
+  - if flash[:signin_errors]
+    .errors
+      = flash[:signin_errors]
+  %label
+    email:
+    %input{:type => 'text', :name => 'email'}
+  %label
+    password:
+    %input{:type => 'password', :name => 'password'}
+  %input{:type => 'submit', :value => 'signin'}
+.extra
+  don't have an account?
+  %a{:href => '/users/signup'} signup
+  it's free and takes seconds 

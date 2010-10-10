@@ -1,0 +1,8 @@
+#header
+  #title crossfit wodder
+  - if session[:user].nil?
+    = render "shared/signupin_form"
+  - else
+    #user-status
+      %a{:href => '/users/home'}= session[:user].email
+      %a{:href => '/users/signout'} [not you?]

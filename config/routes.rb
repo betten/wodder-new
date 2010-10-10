@@ -1,7 +1,9 @@
 WodderNew::Application.routes.draw do
   get "users/signup"
 
-  get "users/signin"
+  post "users/signup"
+
+  post "users/signin"
 
   get "users/signout"
 

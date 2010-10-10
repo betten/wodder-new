@@ -9,7 +9,8 @@ class UsersController < ApplicationController
         session[:user] = u
         redirect_to '/users/home'
       else
-        flash[:errors] = u.errors
+        flash[:signup_errors] = u.errors
+      end
     end
   end
 
@@ -17,7 +18,8 @@ class UsersController < ApplicationController
     if request.post?
       u = User.authenticate(params[:email], params[:password])
       if u.nil?
-        flash[:errors] = 'invalid email password combo'
+        flash[:signin_errors] = 'invalid email password combo'
+        redirect_to :back
       else
         session[:user] = u
         redirect_to '/users/home'
@@ -27,6 +29,7 @@ class UsersController < ApplicationController
 
   def signout
     session[:user] = nil
+    redirect_to '/wods/all'
   end
 
   def view
