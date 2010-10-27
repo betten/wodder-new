@@ -14,7 +14,6 @@ class User
   field :password
   field :salt
 
-  embeds_many :saved_wods
   referenced_in :user_wod
 
   before_create :hash_password

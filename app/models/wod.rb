@@ -4,14 +4,10 @@ class Wod
   field :workout
 end
 
-class UserWod < Wod
-  references_one :user
-end
-
-class SavedWod < Wod
-  embedded_in :user, :inverse_of => :saved_wods
-end
-
 class GymWod < Wod
-  embedded_in :gym, :inverse_of => :wod
+  references_one :gym, :inverse_of => :gym_wod
+end
+
+class UserWod < Wod
+  references_one :user 
 end
