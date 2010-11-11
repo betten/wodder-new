@@ -14,7 +14,7 @@ class User
   field :password
   field :salt
 
-  referenced_in :user_wod
+  referenced_in :user_wod, :inverse_of => :user
 
   before_create :hash_password
   before_save :hash_password, :if => :password_changed?

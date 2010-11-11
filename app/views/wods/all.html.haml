@@ -1,0 +1,7 @@
+<h1>Wods#all</h1>
+- @wods.each do |wod|
+  .wod
+    - if wod.is_a?(GymWod)
+      %strong= wod.gym.name
+    %div!= wod.workout
+  %br

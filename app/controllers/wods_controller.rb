@@ -1,5 +1,6 @@
 class WodsController < ApplicationController
   def all
+   @wods = Wod.all 
   end
 
   def gym

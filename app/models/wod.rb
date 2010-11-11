@@ -9,5 +9,5 @@ class GymWod < Wod
 end
 
 class UserWod < Wod
-  references_one :user 
+  references_one :user, :inverse_of => :user_wod 
 end

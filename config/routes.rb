@@ -17,6 +17,10 @@ WodderNew::Application.routes.draw do
 
   get "wods/new"
 
+  get "jobs/update"
+
+  get "jobs/clear"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
