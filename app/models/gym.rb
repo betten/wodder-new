@@ -20,7 +20,6 @@ class Gym
       self.current_id = id
       self.save
       wod = GymWod.new
-      wod.workout = "hi"
 #      wod.workout = process_html(page.at(self.wod_xpath))
       wod.workout = page.at(self.wod_xpath)
       wod.gym = self

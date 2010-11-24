@@ -1,3 +1,11 @@
+todo:
+
+cleanup html
+user signup/signin/signout testing
+user wods
+wod ranking system (if any - maybe just order by most recent first)
+
+
 new version of crossfit wodder, to be built with rails 3 on mongodb with mongoid and using resque/redis for background jobs
 
 aside from showcasing wods from crossfit affiliates all over the world, also intend to implement a reddit-like user submitted wods functionality
