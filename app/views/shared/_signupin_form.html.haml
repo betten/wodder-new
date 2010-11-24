@@ -1,8 +1,6 @@
-%form{:action => '/users/signin', :method=> 'post'}
-  %input{:type => 'hidden', :name => 'authenticity_token', :value => form_authenticity_token}
-  - if flash[:signin_errors]
-    .errors
-      = flash[:signin_errors]
+- form_tag signin_users_path do
+  - if flash[:signin_notice].present?
+    = flash[:signin_notice]
   %label
     email:
     %input{:type => 'text', :name => 'email'}
@@ -10,7 +8,5 @@
     password:
     %input{:type => 'password', :name => 'password'}
   %input{:type => 'submit', :value => 'signin'}
-.extra
-  don't have an account?
-  %a{:href => '/users/signup'} signup
-  it's free and takes seconds 
+don't have an account?
+= link_to 'signup', signup_users_path 

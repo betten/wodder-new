@@ -5,19 +5,21 @@ class User
   include Mongoid::Timestamps
 
   validates_presence_of :email, :password
-  validates_uniqueness_of :email
+  validates_uniqueness_of :email, :username
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :username, :with => /[A-Z0-9_]/i
+  validates_length_of :username, :within => 4..20
   validates_length_of :password, :within => 4..20
   validates_confirmation_of :password
 
+  field :username
   field :email
   field :password
   field :salt
 
   referenced_in :user_wod, :inverse_of => :user
 
-  before_create :hash_password
-  before_save :hash_password, :if => :password_changed?
+  before_save :hash_password, :if => :password_changed?, :if => :new_record?
 
   def self.authenticate(email, password)
     u = User.first(:conditions => { :email => email })

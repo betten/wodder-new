@@ -7,7 +7,7 @@ gem 'rails', '3.0.0'
 
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 
-gem 'resque'
+# gem 'resque'
 gem 'mongoid', '2.0.0.beta.17'
 gem 'bson_ext', '1.0.4'
 gem 'hpricot'

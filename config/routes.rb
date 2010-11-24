@@ -1,13 +1,15 @@
 WodderNew::Application.routes.draw do
-  get "users/signup"
 
-  post "users/signup"
+  resources :users do
+    member do
+    end
 
-  post "users/signin"
-
-  get "users/signout"
-
-  get "users/view"
+    collection do
+      get 'signup'
+      post 'signin'
+      get 'signout'
+    end
+  end
 
   get "wods/all"
 
