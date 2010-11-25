@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_filter :require_signin, :only => [:index, :edit, :update]
+
   def index
     @user = User.find(session[:user_id])
   end
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
   def signin
     @user = User.authenticate(params[:email], params[:password])
     if @user
-      session[:user_id] = @user.id
+      session[:current_user_id] = @user.id
       redirect_to users_path
     else
       flash[:signin_notice] = 'invalid email password combo'
@@ -20,8 +22,8 @@ class UsersController < ApplicationController
   end
 
   def signout
-    session[:user_id] = nil
-    redirect_to '/wods/all'
+    @current_user = session[:current_user_id] = nil
+    redirect_to root_url
   end
 
   def create
@@ -33,6 +35,9 @@ class UsersController < ApplicationController
     else
       render :action => "signup"
     end
+  end
+
+  def wods
   end
 
   def edit
@@ -47,6 +52,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+  end
+
+  private
+
+  def require_signin
+    unless signed_in?
+      redirect_to root_url
+    end
   end
 
 end

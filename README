@@ -6,6 +6,13 @@ user wods
 wod ranking system (if any - maybe just order by most recent first)
 
 
+routes --
+
+all wods, /wods
+can click on wod to view individual wod --> wods/id
+if gym wod, can click gym, view gym, so need gyms/id to show gym, gym shows all wods, gyms/id/wods may not be necessary ?
+if user wod, user/id/wods, also my wods, user/wods, links to wods/id which can be either gym wod or user, doesnt need to be nested resource, (could it be ? dont think so)
+
 new version of crossfit wodder, to be built with rails 3 on mongodb with mongoid and using resque/redis for background jobs
 
 aside from showcasing wods from crossfit affiliates all over the world, also intend to implement a reddit-like user submitted wods functionality

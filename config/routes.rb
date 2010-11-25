@@ -2,6 +2,7 @@ WodderNew::Application.routes.draw do
 
   resources :users do
     member do
+      get 'wods'
     end
 
     collection do
@@ -11,13 +12,24 @@ WodderNew::Application.routes.draw do
     end
   end
 
-  get "wods/all"
+  resources :wods do
+    member do
+    end
 
-  get "wods/gym"
+    collection do
+      get 'user'
+      get 'gym'
+    end
+  end
 
-  get "wods/user"
+  resources :gyms do
+    member do
+      get 'wods'
+    end
 
-  get "wods/new"
+    collection do
+    end
+  end
 
   get "jobs/update"
 
@@ -74,7 +86,7 @@ WodderNew::Application.routes.draw do
   # just remember to delete public/index.html.
   # root :to => "welcome#index"
 
-  root :to => "wods#all"
+  root :to => "wods#index"
 
   # See how all your routes lay out with "rake routes"
 

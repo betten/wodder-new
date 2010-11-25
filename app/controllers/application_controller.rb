@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_current_user
 
+  def signed_in?
+    !!@current_user
+  end
+
   private
 
   def set_current_user
