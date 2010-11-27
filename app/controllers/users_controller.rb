@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
 
-  before_filter :require_signin, :only => [:index, :edit, :update]
+  before_filter :require_signin, :only => [:index, :create, :edit, :update]
 
   def index
-    @user = User.find(session[:user_id])
   end
 
   def signup
@@ -14,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.authenticate(params[:email], params[:password])
     if @user
       session[:current_user_id] = @user.id
-      redirect_to users_path
+      redirect_to current_user_path
     else
       flash[:signin_notice] = 'invalid email password combo'
       redirect_to :back
@@ -31,13 +30,14 @@ class UsersController < ApplicationController
     if @user.save
     debugger
       session[:user_id] = @user.id
-      redirect_to users_path
+      redirect_to current_user_path
     else
       render :action => "signup"
     end
   end
 
   def wods
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -48,18 +48,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to users_path and return if session[:user_id].present? and session[:user_id] == params[:id]
+    redirect_to current_user_path and return if signed_in? and @current_user.id == @user.id
   end
 
   def destroy
-  end
-
-  private
-
-  def require_signin
-    unless signed_in?
-      redirect_to root_url
-    end
   end
 
 end

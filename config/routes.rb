@@ -1,5 +1,7 @@
 WodderNew::Application.routes.draw do
 
+  match 'users/me' => 'users#index', :as => :current_user
+
   resources :users do
     member do
       get 'wods'

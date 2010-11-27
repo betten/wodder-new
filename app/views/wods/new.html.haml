@@ -1,2 +1,11 @@
-<h1>Wods#new</h1>
-<p>Find me in app/views/wods/new.html.erb</p>
+%h1 Wods#new
+
+- form_for @wod, :url => wods_path do |w|
+  - if @wod.errors.any?
+    %ul
+      - @wod.errors.full_messages.each do|msg|
+        %li= msg
+  = w.label :workout, 'workout:'
+  = w.text_area :workout
+
+  = w.submit 'create wod'

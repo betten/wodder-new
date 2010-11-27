@@ -17,7 +17,7 @@ class User
   field :password
   field :salt
 
-  referenced_in :user_wod, :inverse_of => :user
+  references_many :user_wods, :inverse_of => :user
 
   before_save :hash_password, :if => :password_changed?, :if => :new_record?
 
@@ -29,6 +29,9 @@ class User
 
   def self.digest(password, salt)
     return Digest::MD5.hexdigest(password + salt)
+  end
+
+  def wods
   end
 
   protected
