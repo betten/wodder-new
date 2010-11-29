@@ -26,7 +26,6 @@ WodderNew::Application.routes.draw do
 
   resources :gyms do
     member do
-      get 'wods'
     end
 
     collection do

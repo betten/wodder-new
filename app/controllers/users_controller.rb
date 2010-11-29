@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :require_signin, :only => [:index, :create, :edit, :update]
+  before_filter :require_signin, :only => [:index, :edit, :update]
 
   def index
   end
@@ -28,8 +28,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-    debugger
-      session[:user_id] = @user.id
+      @current_user = @user
+      session[:current_user_id] = @user.id
       redirect_to current_user_path
     else
       render :action => "signup"
