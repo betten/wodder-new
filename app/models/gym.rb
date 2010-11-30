@@ -20,8 +20,8 @@ class Gym
       self.current_id = id
       self.save
       wod = GymWod.new
-#      wod.workout = process_html(page.at(self.wod_xpath))
-      wod.workout = page.at(self.wod_xpath)
+      wod.workout = process_html(page.at(self.wod_xpath))
+      #wod.workout = page.at(self.wod_xpath)
       wod.gym = self
       wod.save # should check wod save success
     end
@@ -30,6 +30,15 @@ class Gym
   protected
 
   def process_html(html)
+    html.search("hr").remove
+    html.search("img").remove
+    html.search("object").remove
+    html.search("embed").remove
+    html = remove_all_attr(html, "style", "align", "id", "color" "font", "class")
+    return html
+  end
+  
+  def DEP_process_html(html)
     html.search("hr").remove
     html = remove_all_attr(html, "style", "align", "id", "color" "font")
     html.search("[@class]").each do |e|

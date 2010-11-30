@@ -2,8 +2,8 @@
 - @wods.each do |wod|
   .wod
     - if wod.is_a?(GymWod)
-      %a{ :href => gym_path(wod.gym) }= wod.gym.name
+      = link_to wod.gym.name, gym_path(wod.gym)
     - elsif wod.is_a?(UserWod)
-      %a{ :href => user_path(wod.user) }= wod.user.username
+      = link_to wod.user.username, user_path(wod.user)
     %div!= wod.workout
   %br
