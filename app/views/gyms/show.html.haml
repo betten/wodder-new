@@ -1,0 +1,7 @@
+%h1 Gyms#show
+
+%h2= @gym.name
+
+= link_to "go to #{@gym.name}", @gym.url
+
+%div!= @gym.gym_wod.workout
