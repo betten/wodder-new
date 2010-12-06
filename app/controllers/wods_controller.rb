@@ -3,7 +3,7 @@ class WodsController < ApplicationController
   before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy]
 
   def index
-   @wods = Wod.all 
+   @wods = Wod.all_by_rank 
   end
 
   def show
