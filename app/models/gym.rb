@@ -13,6 +13,12 @@ class Gym
 
   references_many :gym_wod, :inverse_of => :gym
 
+  key :name
+
+  def wods
+    self.gym_wod
+  end
+
   def check_for_new_wod
     returning Hash.new do |status|
       begin
@@ -21,11 +27,7 @@ class Gym
         if id != self.current_id
           self.current_id = id
           self.save
-          wod = GymWod.new
-          wod.workout = process_html(page.at(self.wod_xpath))
-          #wod.workout = page.at(self.wod_xpath)
-          wod.gym = self
-          wod.save # should check wod save success
+          create_gym_wod(page.at(self.wod_xpath))
           status[:updated] = true
         else
           status[:latest] = true
@@ -36,7 +38,15 @@ class Gym
     end
   end
 
-  protected
+  private
+
+  def create_gym_wod(raw_workout_html)
+    wod = GymWod.new
+    wod.workout = process_html(raw_workout_html)
+    #wod.workout = page.at(self.wod_xpath)
+    wod.gym = self
+    wod.save # should check wod save success
+  end
 
   def process_html(html)
     html.search("hr").remove

@@ -4,4 +4,4 @@
 
 = link_to "go to #{@gym.name}", @gym.url
 
-%div!= @gym.gym_wod.workout
+%div!= @gym.wods.first.workout
