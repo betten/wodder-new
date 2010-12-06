@@ -6,14 +6,22 @@ class JobsController < ApplicationController
 
   def update
     gym = Gym.find(params[:id])
-    render :nothing => true, :status => gym.check_for_new_wod ? 200 : 500;
+    status = gym.check_for_new_wod
+    render :json => status
   end
 
-  def clear
+  def clear_all
     Gym.all.each do |gym|
       gym.current_id = nil
       gym.save
     end
+  end
+
+  def clear
+    gym = Gym.find(params[:id])
+    gym.current_id = nil
+    gym.save
+    render :clear_all
   end
 
 end

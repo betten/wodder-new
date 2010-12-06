@@ -14,16 +14,25 @@ class Gym
   references_many :gym_wod, :inverse_of => :gym
 
   def check_for_new_wod
-    page = Hpricot(open(self.url))
-    id = page.at(self.id_xpath).to_s
-    if id != self.current_id
-      self.current_id = id
-      self.save
-      wod = GymWod.new
-      wod.workout = process_html(page.at(self.wod_xpath))
-      #wod.workout = page.at(self.wod_xpath)
-      wod.gym = self
-      wod.save # should check wod save success
+    returning Hash.new do |status|
+      begin
+        page = Hpricot(open(self.url))
+        id = page.at(self.id_xpath).to_s
+        if id != self.current_id
+          self.current_id = id
+          self.save
+          wod = GymWod.new
+          wod.workout = process_html(page.at(self.wod_xpath))
+          #wod.workout = page.at(self.wod_xpath)
+          wod.gym = self
+          wod.save # should check wod save success
+          status[:updated] = true
+        else
+          status[:latest] = true
+        end
+      rescue
+        status[:error] = true
+      end
     end
   end
 

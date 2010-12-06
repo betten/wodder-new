@@ -10,19 +10,17 @@
     var current_gym = $('.notupdated').first();
     var status = current_gym.find('.status');
     status.text('checking...');
-    $.ajax({
-      url: '/jobs/update/' + current_gym.attr('id'),
-      success: function() {
-        current_gym.removeClass('notupdated');
+    $.post('/jobs/update/' + current_gym.attr('id'), function(data) {
+      current_gym.removeClass('notupdated');
+      if(data.updated) {
         status.text('updated');
-        updateNextGym();
-      },
-      error: function() {
-        current_gym.removeClass('notupdated');
-        status.text('not updated');
-        updateNextGym();
+      } else if(data.latest) {
+        status.text('latest');
+      } else {
+        status.css('color', '#f00').text('error');
       }
-    });
+      updateNextGym();
+    }, 'json');
   };
   $(document).ready(function() {
     updateNextGym();

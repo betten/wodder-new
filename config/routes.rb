@@ -34,8 +34,8 @@ WodderNew::Application.routes.draw do
 
   match "jobs/update" => "jobs#update_all"
   match "jobs/update/:id" => "jobs#update"
-  get "jobs/update_all"
-  get "jobs/clear"
+  match "jobs/clear" => "jobs#clear_all"
+  match "jobs/clear/:id" => "jobs#clear"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
