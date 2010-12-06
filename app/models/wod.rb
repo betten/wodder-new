@@ -5,7 +5,7 @@ class Wod
 end
 
 class GymWod < Wod
-  references_one :gym, :inverse_of => :gym_wod
+  referenced_in :gym, :inverse_of => :gym_wod
 end
 
 class UserWod < Wod

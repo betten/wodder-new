@@ -11,7 +11,7 @@ class Gym
   field :current_id
   field :id_xpath
 
-  referenced_in :gym_wod, :inverse_of => :gym
+  references_many :gym_wod, :inverse_of => :gym
 
   def check_for_new_wod
     page = Hpricot(open(self.url))
@@ -35,29 +35,19 @@ class Gym
     html.search("object").remove
     html.search("embed").remove
     html = remove_all_attr(html, "style", "align", "id", "color" "font", "class")
-    return html
-  end
-  
-  def DEP_process_html(html)
-    html.search("hr").remove
-    html = remove_all_attr(html, "style", "align", "id", "color" "font")
-    html.search("[@class]").each do |e|
-      e.remove_attribute("class")
-    end
     html = convert_to_absolute(html, "a","href")
     html = convert_to_absolute(html, "img","src")
     html.search("a").each do |e|
       e.raw_attributes["target"] = '_blank'
     end
-    html = Hpricot(html.to_s.gsub(/(\n*<br\s*\/?>){2,}/i,'<br /><br />'))
     return html
   end
-
+  
   def convert_to_absolute(html, elem, attr)
     html.search(elem).each do |e|
       uri = e.attributes[attr]
       if uri.match('^http').nil?
-        u = URI.parse(@href)
+        u = URI.parse(self.url)
         href = u + uri
         e.raw_attributes[attr] = href.to_s
       end

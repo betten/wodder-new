@@ -1,0 +1,29 @@
+- @gyms.each do |gym|
+  .gym.notupdated{ :id => gym.id }
+    %span.name= gym.name
+    %span ...
+    %strong.status
+
+:javascript
+  var updateNextGym = function() {
+    if(!$('.notupdated').length) return false;
+    var current_gym = $('.notupdated').first();
+    var status = current_gym.find('.status');
+    status.text('checking...');
+    $.ajax({
+      url: '/jobs/update/' + current_gym.attr('id'),
+      success: function() {
+        current_gym.removeClass('notupdated');
+        status.text('updated');
+        updateNextGym();
+      },
+      error: function() {
+        current_gym.removeClass('notupdated');
+        status.text('not updated');
+        updateNextGym();
+      }
+    });
+  };
+  $(document).ready(function() {
+    updateNextGym();
+  });

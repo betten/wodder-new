@@ -32,8 +32,9 @@ WodderNew::Application.routes.draw do
     end
   end
 
-  get "jobs/update"
-
+  match "jobs/update" => "jobs#update_all"
+  match "jobs/update/:id" => "jobs#update"
+  get "jobs/update_all"
   get "jobs/clear"
 
   # The priority is based upon order of creation:
