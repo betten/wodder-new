@@ -1,0 +1,9 @@
+<h1>Wods#all</h1>
+- @wods.each do |wod|
+  .wod
+    - if wod.is_a?(GymWod)
+      = link_to wod.gym.name, gym_path(wod.gym)
+    - elsif wod.is_a?(UserWod)
+      = link_to wod.user.username, user_path(wod.user)
+    %div!= wod.workout
+  %br

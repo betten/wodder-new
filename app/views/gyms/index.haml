@@ -1,0 +1,5 @@
+%h1 Gyms#index
+
+%ul
+  - @gyms.each do |g|
+    %li= link_to g.name, gym_path(g)

@@ -1,0 +1,13 @@
+!!!
+%html
+%head
+  %title Crossfit Wodder
+  = stylesheet_link_tag 'reset'
+  = yield :css
+  = javascript_include_tag :defaults
+  = javascript_include_tag 'jquery-1.4.4.min.js'
+  = yield :js
+  = csrf_meta_tag
+%body
+  = render "shared/header"
+  = yield
