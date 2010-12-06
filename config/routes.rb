@@ -29,6 +29,7 @@ WodderNew::Application.routes.draw do
     end
 
     collection do
+      post 'test_xpath'
     end
   end
 
