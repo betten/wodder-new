@@ -1,8 +1,0 @@
-#header
-  #title crossfit wodder
-  - if @current_user.nil?
-    = render "shared/signupin_form"
-  - else
-    #user-status
-      = link_to @current_user.username, current_user_path
-      = link_to '[signout]', signout_users_path

@@ -9,7 +9,7 @@ class Wod
     self.all.each do |wod|
       rank_metrics.push([wod.rank_metric, wod])
     end
-    x = rank_metrics.sort{ |a,b| a[0] <=> b[0] }.collect{ |x| x[1] }
+    rank_metrics.sort{ |a,b| a[0] <=> b[0] }.collect{ |x| x[1] }
   end
 
   def rank_metric
