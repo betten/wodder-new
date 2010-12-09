@@ -3,6 +3,7 @@ class Wod
   include Mongoid::Timestamps
   field :workout
   field :points, :type => Integer, :default => 0
+  field :points_from, :type => Array, :default => []
 
   def self.all_by_rank
     rank_metrics = []

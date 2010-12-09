@@ -39,4 +39,10 @@ class WodsController < ApplicationController
   def destroy
   end
 
+  def up_vote
+    wod = Wod.find(params[:id])
+    wod.points = wod.points + 1;
+    wod.points_from << current_user.id.to_s
+  end
+
 end
