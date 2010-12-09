@@ -15,8 +15,18 @@ class Gym
 
   key :name
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+  validates_presence_of :url
+  validates_presence_of :wod_xpath
+  validates_presence_of :id_xpath
+
   def wods
     self.gym_wod
+  end
+
+  def has_wods?
+    self.gym_wod.present?
   end
 
   def check_for_new_wod
@@ -27,6 +37,9 @@ class Gym
         if id != self.current_id
           self.current_id = id
           self.save
+          self.wods.each do |wod|
+            wod.destroy
+          end
           create_gym_wod(page.at(self.wod_xpath))
           status[:updated] = true
         else

@@ -12,7 +12,12 @@ class GymsController < ApplicationController
   end
 
   def create
-
+    @gym = Gym.new(params[:gym])
+    if @gym.save
+      redirect_to @gym
+    else
+      render :new
+    end
   end
 
   def update

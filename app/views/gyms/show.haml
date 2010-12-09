@@ -4,4 +4,7 @@
 
 = link_to "go to #{@gym.name}", @gym.url
 
-%div!= @gym.wods.first.workout
+- if @gym.has_wods?
+  %div!= @gym.wods.first.workout
+- else
+  %i no wods for this gym yet!

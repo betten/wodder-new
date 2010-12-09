@@ -1,14 +1,16 @@
 %h1 New Gym
 
 = form_for(@gym) do |g|
+  - if @gym.errors.any?
+    %ul
+      - @gym.errors.full_messages.each do |error|
+        %li= error
 
-  %div
-    = g.label :name
-    = g.text_field :name
+  %div= g.label :name
+  %div= g.text_field :name
 
-  %div
-    = g.label :url
-    = g.text_field :url
+  %div= g.label :url
+  %div= g.text_field :url
 
   %div
     = g.label :id_xpath
