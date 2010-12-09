@@ -1,4 +1,7 @@
 class GymsController < ApplicationController
+
+  before_filter :require_admin, :only => [:new, :create, :update, :test_xpath]
+
   def index
     @gyms = Gym.all
   end

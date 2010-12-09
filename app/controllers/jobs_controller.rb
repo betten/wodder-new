@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
 
+  before_filter :require_admin
+
   def update_all
     @gyms = Gym.all
   end

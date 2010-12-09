@@ -9,13 +9,14 @@ class User
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
   validates_format_of :username, :with => /[A-Z0-9_]/i
   validates_length_of :username, :within => 4..20
-  validates_length_of :password, :within => 4..20
+  validates_length_of :password, :within => 4..40
   validates_confirmation_of :password
 
   field :username
   field :email
   field :password
   field :salt
+  field :admin, :type => Boolean, :default => false
 
   key :username
 
@@ -34,6 +35,11 @@ class User
   end
 
   def wods
+    self.user_wods
+  end
+
+  def is_admin?
+    self.admin
   end
 
   protected
