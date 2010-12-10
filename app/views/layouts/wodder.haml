@@ -2,11 +2,16 @@
 %html
 %head
   %title Crossfit Wodder
+  
+  <!-- css -->
   = stylesheet_link_tag 'reset'
+  = stylesheet_link_tag 'wodder'
   = yield :css
-  = javascript_include_tag :defaults
+
+  <!-- js -->
   = javascript_include_tag 'jquery-1.4.4.min.js'
   = yield :js
+
   = csrf_meta_tag
 %body
   = render "shared/header"

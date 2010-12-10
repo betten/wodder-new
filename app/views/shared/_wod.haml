@@ -1,0 +1,8 @@
+.wod
+  - unless defined? hide_header and hide_header
+    .header
+      - if wod.is_a?(GymWod)
+        = link_to wod.gym.name, gym_path(wod.gym)
+      - elsif wod.is_a?(UserWod)
+        = link_to wod.user.username, user_path(wod.user)
+  .workout!= wod.workout

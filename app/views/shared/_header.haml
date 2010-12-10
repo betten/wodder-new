@@ -1,8 +1,20 @@
 #header
   #title crossfit wodder
-  - if @current_user.nil?
-    = render "shared/signupin_form"
-  - else
-    #user-status
+  #status
+    - if @current_user.nil?
+      = render "shared/signupin_form"
+    - else
+      hi
       = link_to @current_user.username, current_user_path
-      = link_to '[signout]', signout_users_path
+      not you?
+      = link_to 'signout', signout_users_path
+  #nav
+    = link_to 'all wods', wods_path
+    |
+    = link_to 'gym wods', wods_path # to be changed
+    |
+    = link_to 'user wods', wods_path # to be changed
+    |
+    = link_to 'gyms', gyms_path
+    |
+    = link_to 'users', users_path

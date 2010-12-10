@@ -1,10 +1,9 @@
-%h1 Gyms#show
+.gym
+  .title= @gym.name
+  .link
+    = link_to "go to #{@gym.name}", @gym.url, :target => "_blank"
 
-%h2= @gym.name
-
-= link_to "go to #{@gym.name}", @gym.url
-
-- if @gym.has_wods?
-  %div!= @gym.wods.first.workout
-- else
-  %i no wods for this gym yet!
+  - if @gym.has_wods?
+    = render :partial => "shared/wod", :locals => { :wod => @gym.wods.first, :hide_header => true }
+  - else
+    %i no wods for this gym yet!

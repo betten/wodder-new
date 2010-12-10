@@ -1,0 +1,35 @@
+body {
+  font-family: arial; }
+
+a {
+  color: #00e; }
+
+#header {
+  border-bottom: 8px solid #000;
+  margin-bottom: 30px;
+  padding: 12px; }
+  #header #title {
+    display: inline;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    text-transform: uppercase; }
+  #header #status {
+    display: inline;
+    float: right;
+    font-size: 11px; }
+    #header #status #signin {
+      display: inline; }
+  #header #nav {
+    font-size: 12px;
+    padding-top: 6px; }
+
+.wod {
+  margin-bottom: 28px; }
+  .wod .header {
+    font-size: 22px;
+    font-weight: bold; }
+    .wod .header a {
+      text-decoration: none; }
+  .wod .workout a {
+    color: #555; }

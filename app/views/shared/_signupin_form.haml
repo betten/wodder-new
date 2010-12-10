@@ -1,4 +1,4 @@
-- form_tag signin_users_path do
+- form_tag signin_users_path, :id => 'signin' do
   - if flash[:signin_notice].present?
     = flash[:signin_notice]
   %label
