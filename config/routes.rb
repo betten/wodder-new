@@ -1,21 +1,23 @@
 WodderNew::Application.routes.draw do
 
-  match 'users/me' => 'users#index', :as => :current_user
-
   resources :users do
     member do
       get 'wods'
     end
 
     collection do
+      get 'me'
       get 'signup'
       post 'signin'
       get 'signout'
     end
   end
 
+  match '/users/me', :as => :current_user
+
   resources :wods do
     member do
+      get 'up_vote'
     end
 
     collection do

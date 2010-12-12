@@ -1,19 +1,23 @@
+- if flash[:must_be_signed_in]
+  .notice
+    %i You must be signed in to do that! Signin above or signup below - it's free and easy!
+
 = form_for(@user) do |u|
   - if @user.errors.any?
     %ul
       - @user.errors.full_messages.each do |msg|
         %li= msg
 
-  = u.label :email
-  = u.text_field :email
+  %div= u.label :email
+  %div= u.text_field :email
 
-  = u.label :username
-  = u.text_field :username
+  %div= u.label :username
+  %div= u.text_field :username
 
-  = u.label :password
-  = u.password_field :password
+  %div= u.label :password
+  %div= u.password_field :password
 
-  = u.label :password_confirmation
-  = u.password_field :password_confirmation 
+  %div= u.label :password_confirmation
+  %div= u.password_field :password_confirmation 
 
-  = u.submit
+  %div= u.submit 'Signup'

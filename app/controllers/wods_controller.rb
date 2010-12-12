@@ -1,9 +1,9 @@
 class WodsController < ApplicationController
 
-  before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy, :up_vote]
 
   def index
-   @wods = Wod.all_by_rank 
+    @wods = Wod.all_by_rank 
   end
 
   def show
@@ -41,8 +41,12 @@ class WodsController < ApplicationController
 
   def up_vote
     wod = Wod.find(params[:id])
-    wod.points = wod.points + 1;
-    wod.points_from << current_user.id.to_s
+    unless wod.has_point_from_user?(current_user) and !current_user.is_admin?
+      wod.points = wod.points + 1;
+      wod.points_from << current_user.id.to_s
+      wod.save
+    end
+    redirect_to wods_path # should probably redirect :back or to referrer
   end
 
 end

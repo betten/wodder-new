@@ -11,6 +11,18 @@
   <!-- js -->
   = javascript_include_tag 'jquery-1.4.4.min.js'
   = yield :js
+  :javascript
+    //$(document).ready(function() {
+      //$('.wod:odd').css('background', '#ddd');
+      //$('.upvote').click(function() {
+      //  var path = $(this).find('a').attr('href');
+      //  $.get(path);
+      //  var count = $(this).siblings('.count');
+      //  count.text(parseInt(count.text()) + 1);
+      //  $(this).hide();
+      //  return false;
+      //});
+    //});
 
   = csrf_meta_tag
 %body

@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
-  before_filter :require_signin, :only => [:index, :edit, :update]
+  before_filter :require_signin, :only => [:me, :edit, :update]
 
   def index
+  end
+
+  def me
   end
 
   def signup

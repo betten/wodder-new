@@ -4,18 +4,15 @@ class ApplicationController < ActionController::Base
 
   before_filter :set_current_user
 
-  def signed_in?
-    !!@current_user
-  end
-
   def require_signin
-    unless signed_in?
-      redirect_to root_url
+    unless current_user
+      flash[:must_be_signed_in] = true
+      redirect_to signup_users_path 
     end
   end
 
   def current_user
-    return nil unless signed_in?
+    return nil unless !!@current_user
     @current_user
   end
 

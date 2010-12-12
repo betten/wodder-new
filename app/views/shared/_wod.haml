@@ -1,7 +1,7 @@
-.wod
+.wod{ :id => wod.id }
   .points
-    - unless wod.has_point_from_user?(@current_user)
-      .upvote= link_to '▲', wods_path
+    - unless wod.has_point_from_user?(@current_user) and !@current_user.is_admin?
+      .upvote= link_to '▲', up_vote_wod_path(wod)
     .count= wod.points
   .content
     - unless defined? hide_header and hide_header
