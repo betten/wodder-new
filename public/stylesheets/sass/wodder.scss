@@ -78,3 +78,20 @@ a {
     }
   }
 }
+
+.gym {
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    .link {
+      font-size: 12px;
+    }
+  }
+  .recent-wods {
+    padding: 20px 0px;
+    .text {
+      font-weight: bold;
+      padding-bottom: 10px;
+    }
+  }
+}

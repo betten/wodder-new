@@ -53,3 +53,14 @@ a {
         text-decoration: none; }
     .wod .content .workout a {
       color: #555; }
+
+.gym .title {
+  font-size: 22px;
+  font-weight: bold; }
+  .gym .title .link {
+    font-size: 12px; }
+.gym .recent-wods {
+  padding: 20px 0px; }
+  .gym .recent-wods .text {
+    font-weight: bold;
+    padding-bottom: 10px; }

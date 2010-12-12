@@ -1,9 +1,11 @@
 .gym
-  .title= @gym.name
-  .link
-    = link_to "go to #{@gym.name}", @gym.url, :target => "_blank"
+  .title
+    = @gym.name
+    %span.link= link_to "go to #{@gym.name}", @gym.url, :target => "_blank"
 
-  - if @gym.has_wods?
-    = render :partial => "shared/wod", :locals => { :wod => @gym.wods.first, :hide_header => true }
-  - else
-    %i no wods for this gym yet!
+  .recent-wods
+    .text recent wods:
+    - if @gym.has_wods?
+      = render :partial => "shared/wod", :locals => { :wod => @gym.wods.first, :hide_header => true }
+    - else
+      %i no wods for this gym yet!
