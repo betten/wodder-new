@@ -24,12 +24,32 @@ a {
     font-size: 12px;
     padding-top: 6px; }
 
+#ranked-wods .wod-wrapper .rank {
+  float: left;
+  font-weight: bold;
+  line-height: 22px;
+  padding-left: 6px;
+  padding-right: 2px; }
+
 .wod {
-  margin-bottom: 28px; }
-  .wod .header {
-    font-size: 22px;
-    font-weight: bold; }
-    .wod .header a {
+  margin-bottom: 28px;
+  overflow: auto; }
+  .wod .points {
+    float: left;
+    line-height: 22px;
+    text-align: center;
+    width: 30px; }
+    .wod .points a {
       text-decoration: none; }
-  .wod .workout a {
-    color: #555; }
+    .wod .points .count {
+      color: #888;
+      font-weight: bold; }
+  .wod .content {
+    margin-left: 30px; }
+    .wod .content .header {
+      font-size: 22px;
+      font-weight: bold; }
+      .wod .content .header a {
+        text-decoration: none; }
+    .wod .content .workout a {
+      color: #555; }

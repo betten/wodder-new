@@ -19,6 +19,11 @@ class Wod
     self.points / (t + 2)^1.5
   end
 
+  def has_point_from_user?(user)
+    self.points_from.include?(user.id.to_s) if user.is_a?(User)
+    self.points_from.include?(user) if user.is_a?(String)
+  end
+
 end
 
 class GymWod < Wod

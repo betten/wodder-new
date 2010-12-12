@@ -30,18 +30,51 @@ a {
   }
 }
 
+#ranked-wods {
+  .wod-wrapper {
+    .rank {
+      float:left;
+      font-weight: bold;
+      line-height: 22px;
+      padding-left: 6px;
+      padding-right: 2px;
+    }
+    .wod {
+    }
+  }
+}
+
 .wod {
   margin-bottom: 28px;
-  .header {
-    font-size: 22px;
-    font-weight: bold;
+  overflow: auto;
+  .points {
+    float: left;
+    line-height: 22px;
+    text-align: center;
+    width: 30px;
+    .upvote {
+    }
     a {
       text-decoration: none;
     }
+    .count {
+      color: #888;
+      font-weight: bold;
+    }
   }
-  .workout {
-    a {
-      color: #555;
+  .content {
+    margin-left: 30px;
+    .header {
+      font-size: 22px;
+      font-weight: bold;
+      a {
+        text-decoration: none;
+      }
+    } 
+    .workout {
+      a {
+        color: #555;
+      }
     }
   }
 }
