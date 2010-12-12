@@ -27,9 +27,13 @@ class GymsController < ApplicationController
   end
 
   def test_xpath
-    page = Hpricot(open(params[:url]))
-    x = page.at(params[:xpath])
-    render :text => x.to_html
+    begin
+      page = Hpricot(open(params[:url]))
+      x = page.at(params[:xpath])
+      render :text => x.to_html
+    rescue
+      render :text => "problems testing - verify that url / xpath are correct"
+    end
   end
 
 end

@@ -33,7 +33,7 @@ a {
 
 .wod {
   margin-bottom: 28px;
-  overflow: auto; }
+  overflow: hidden; }
   .wod .points {
     float: left;
     line-height: 22px;
