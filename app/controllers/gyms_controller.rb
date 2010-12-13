@@ -23,7 +23,17 @@ class GymsController < ApplicationController
     end
   end
 
+  def edit
+    @gym = Gym.find(params[:id])
+  end
+
   def update
+    @gym = Gym.find(params[:id])
+    if @gym.update_attributes(params[:gym])
+      redirect_to @gym
+    else
+      render :edit
+    end
   end
 
   def test_xpath

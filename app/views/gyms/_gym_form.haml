@@ -1,0 +1,59 @@
+= form_for(@gym) do |g|
+  - if @gym.errors.any?
+    %ul
+      - @gym.errors.full_messages.each do |error|
+        %li= error
+
+  %div= g.label :name
+  %div= g.text_field :name
+
+  %div= g.label :url
+  %div= g.text_field :url
+
+  %div
+    = g.label :id_xpath
+    %div
+      = g.text_field :id_xpath
+      %a#test_id_xpath{ :href => "javascript:void(0);" } test
+    #test_id_xpath_results
+
+  %div
+    = g.label :wod_xpath
+    %div
+      = g.text_field :wod_xpath
+      %a#test_wod_xpath{ :href => "javascript:void(0);" } test
+    #test_wod_xpath_results
+
+  %div
+    = g.submit
+
+:javascript
+  (function() {
+    var test_xpath = function(is_testing_id) {
+      var results = is_testing_id ? $('#test_id_xpath_results') : $('#test_wod_xpath_results');
+      var xpath = is_testing_id ? $('#gym_id_xpath') : $('#gym_wod_xpath');
+      results.text('loading...');
+      $.post(
+        '#{test_xpath_gyms_path}',
+        { 
+          url: $('#gym_url').val(),
+          xpath: xpath.val()
+        }, 
+        function(data) {
+          results.text(data);
+        }
+      );
+    };
+    $('#test_id_xpath, #test_wod_xpath').click(function() {
+      var is_testing_id = $(this).attr('id').match('test_id_xpath');
+      test_xpath(is_testing_id);
+      return false;
+    });
+    $('#gym_id_xpath, #gym_wod_xpath').keypress(function(e) {
+      if(e.keyCode == '13') {
+        var is_testing_id = $(this).attr('id').match('gym_id_xpath');
+        test_xpath(is_testing_id);
+        return false;
+      }
+    });
+  })();
