@@ -10,4 +10,15 @@
           = link_to wod.gym.name, gym_path(wod.gym)
         - elsif wod.is_a?(UserWod)
           = link_to wod.user.username, user_path(wod.user)
+
+        - if wod.has_comments?
+          = link_to wod.comments.count.to_s + ' comments', wod_path(wod), :class => "test"
+        - else
+          = link_to 'discuss', wod_path(wod), :class => "test"
     .workout!= wod.workout
+
+:css
+  .test {
+    font-size: 11px;
+    font-weight: normal;
+  }

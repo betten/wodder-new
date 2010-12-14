@@ -7,6 +7,7 @@ class WodsController < ApplicationController
   end
 
   def show
+    @wod = Wod.find(params[:id])
   end
 
   def new

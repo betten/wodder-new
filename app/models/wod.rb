@@ -5,6 +5,8 @@ class Wod
   field :points, :type => Integer, :default => 0
   field :points_from, :type => Array, :default => []
 
+  embeds_many :comments
+
   def self.all_by_rank
     rank_metrics = []
     self.all.each do |wod|
@@ -33,6 +35,10 @@ class Wod
   def has_point_from_user?(user)
     return self.points_from.include?(user.id.to_s) if user.is_a?(User)
     return self.points_from.include?(user) if user.is_a?(String)
+  end
+
+  def has_comments?
+    self.comments.present?
   end
 
 end

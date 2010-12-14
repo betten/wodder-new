@@ -21,6 +21,7 @@ class User
   key :username
 
   references_many :user_wods, :inverse_of => :user
+  references_many :comments, :inverse_of => :user
 
   before_save :hash_password, :if => :password_changed?, :if => :new_record?
 
