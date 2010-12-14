@@ -1,5 +1,13 @@
-%h1 Users#show
-%h2= @user.username
+.gymusershow.user
+  .title
+    = @user.username
+    %span.link= link_to "all users", users_path
+    %span.link= link_to "all wods", wods_path
 
-- if @user.user_wods.present?
-  %div!= @user.user_wods.first.workout
+  .recent-wods
+    .text recent wods:
+    - if @user.has_wods?
+      - @user.wods.each do |wod|
+        = render :partial => "shared/wod", :locals => { :wod => wod, :hide_header => true }
+    - else
+      %i no wods yet!

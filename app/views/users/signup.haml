@@ -1,23 +1,47 @@
+.h1 Signup or Signin
+
 - if flash[:must_be_signed_in]
   .notice
-    %i You must be signed in to do that! Signin above or signup below - it's free and easy!
+    %i You must be signed in to do that! Signin or signup below - it's free and easy!
 
-= form_for(@user) do |u|
-  - if @user.errors.any?
-    %ul
-      - @user.errors.full_messages.each do |msg|
-        %li= msg
+#signupin
+  .signup
+    .sub signing up with Wodder is free and easy as filling out the form below!
+    .h2 Signup
+    = form_for(@user) do |u|
+      - if @user.errors.any?
+        %ul
+          - @user.errors.full_messages.each do |msg|
+            %li= msg
 
-  %div= u.label :email
-  %div= u.text_field :email
+      %div= u.label :email
+      %div= u.text_field :email
+  
+      %div= u.label :username
+      %div= u.text_field :username
 
-  %div= u.label :username
-  %div= u.text_field :username
+      %div= u.label :password
+      %div= u.password_field :password
+  
+      %div= u.label :password_confirmation
+      %div= u.password_field :password_confirmation 
 
-  %div= u.label :password
-  %div= u.password_field :password
+      %div= u.submit 'Signup'
 
-  %div= u.label :password_confirmation
-  %div= u.password_field :password_confirmation 
-
-  %div= u.submit 'Signup'
+  .signin
+    .sub already have an account?
+    .h2 Signin
+    = form_for @user, :url => signin_users_path do
+      - if flash[:signin_error]
+        %ul
+          %li Invalid email password combo.
+      %div
+        %label
+          Email
+          %div= text_field_tag "email"
+      %div
+        %label
+          Password
+          %div= password_field_tag "password"
+      %div
+        = submit_tag "Signin"

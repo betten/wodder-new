@@ -39,8 +39,18 @@ class User
     self.user_wods
   end
 
+  def has_wods?
+    self.wods.present?
+  end
+
   def is_admin?
     self.admin
+  end
+
+  def is?(user)
+    return true if user.is_a?(User) and self.id == user.id
+    return true if user.is_a?(String) and self.id == user
+    return false
   end
 
   protected

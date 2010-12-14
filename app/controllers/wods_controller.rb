@@ -8,6 +8,7 @@ class WodsController < ApplicationController
 
   def show
     @wod = Wod.find(params[:id])
+    @comment = Comment.new
   end
 
   def new
@@ -16,7 +17,7 @@ class WodsController < ApplicationController
 
   def create
     @wod = UserWod.new(params[:user_wod])
-    @wod.user = @current_user
+    @wod.user = current_user
     if @wod.save
       # probably want to flash wod successfully created
       redirect_to current_user_path
@@ -32,9 +33,11 @@ class WodsController < ApplicationController
   end
 
   def gym
+    @wods = GymWod.all_by_rank
   end
 
   def user
+    @wods = UserWod.all_by_rank
   end
 
   def destroy

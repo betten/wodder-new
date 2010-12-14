@@ -1,5 +1,9 @@
 WodderNew::Application.routes.draw do
 
+  get "comments/create"
+
+  get "comments/destroy"
+
   resources :users do
     member do
       get 'wods'
@@ -16,6 +20,7 @@ WodderNew::Application.routes.draw do
   match '/users/me', :as => :current_user
 
   resources :wods do
+    resources :comments
     member do
       get 'up_vote'
     end

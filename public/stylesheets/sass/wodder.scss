@@ -5,6 +5,19 @@ a {
   color: #00e;
 }
 
+
+.h1 {
+  font-size: 30px;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+.h2 {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 6px 0px;
+}
+
+
 #header {
   border-bottom: 8px solid #000;
   margin-bottom: 30px;
@@ -87,7 +100,7 @@ a {
   }
 }
 
-.gym {
+.gymusershow {
   .title {
     font-size: 22px;
     font-weight: bold;
@@ -101,5 +114,16 @@ a {
       font-weight: bold;
       padding-bottom: 10px;
     }
+  }
+}
+
+#signupin {
+  .signup, .signin {
+    float: left;
+  }
+  .signin {
+    border-left: 1px solid #ccc;
+    margin-left: 30px;
+    padding-left: 30px;
   }
 }

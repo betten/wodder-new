@@ -12,8 +12,12 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    return nil unless !!@current_user
+    return nil unless current_user?
     @current_user
+  end
+
+  def current_user?
+    !!@current_user
   end
 
   def require_admin

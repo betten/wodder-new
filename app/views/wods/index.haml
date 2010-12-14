@@ -1,6 +1,1 @@
-#ranked-wods
-  - @wods.each_with_index do |wod, index|
-    .wod-wrapper
-      .rank= (index + 1).to_s + "."
-      = render :partial => "shared/wod", :locals => { :wod => wod }
-
+= render :partial => "shared/ranked_wods", :locals => { :wods => @wods }

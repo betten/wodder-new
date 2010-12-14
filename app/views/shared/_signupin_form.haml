@@ -1,12 +1,10 @@
 - form_tag signin_users_path, :id => 'signin' do
-  - if flash[:signin_notice].present?
-    = flash[:signin_notice]
   %label
     email:
-    %input{:type => 'text', :name => 'email'}
+    = text_field_tag "email"
   %label
     password:
-    %input{:type => 'password', :name => 'password'}
-  %input{:type => 'submit', :value => 'signin'}
+    = password_field_tag "password"
+  = submit_tag "signin"
 don't have an account?
 = link_to 'signup', signup_users_path 

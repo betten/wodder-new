@@ -1,10 +1,11 @@
-%h1 Users#index
-%h2 welcome #{@current_user.username} (#{@current_user.email})
+.h1 Me
+%div
+  Hey there
+  %strong= @current_user.username
+  here's your profile.  Add wods, update your info, update wods - get Wodding! 
 
-= link_to 'add new wod', new_wod_path
-%h3 my wods
-%ul
-  - @current_user.user_wods.each do |wod|
-    %li
-      = wod.workout
-      = link_to 'delete', wod_path(wod), :confirm => "Are you sure?", :method => :delete
+.gymusershow
+  .title
+    = @current_user.username
+    %span.link= link_to "edit profile", edit_user_path(@current_user)
+    %span.link= link_to "new wod", new_wod_path

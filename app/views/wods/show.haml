@@ -9,7 +9,13 @@
 - @wod.comments.each do |comment|
   = comment
 
-- form_for(:comment) do |c|
+%h2 New Comment
+- form_for @comment, :url => wod_comments_path(@wod) do |c|
+  - if @comment.errors.any?
+    %ul
+      - @comment.errors.full_messages.each do |error|
+        %li= error
+
   %div= c.text_area :text
 
-  %div= c.submit
+  %div= c.submit 'Add Comment'
