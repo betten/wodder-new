@@ -8,6 +8,6 @@
     .text recent wods:
     - if @user.has_wods?
       - @user.wods.each do |wod|
-        = render :partial => "shared/wod", :locals => { :wod => wod, :hide_header => true }
+        = render :partial => "shared/wod", :locals => { :wod => wod }
     - else
       %i no wods yet!

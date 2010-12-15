@@ -68,6 +68,9 @@ a {
       font-weight: bold; }
       .wod .content .header a {
         text-decoration: none; }
+      .wod .content .header .sub {
+        display: inline;
+        font-size: 12px; }
     .wod .content .workout a {
       color: #555; }
 
@@ -88,3 +91,10 @@ a {
   border-left: 1px solid #ccc;
   margin-left: 30px;
   padding-left: 30px; }
+
+.comments {
+  padding-bottom: 20px; }
+  .comments .comment {
+    padding-bottom: 6px; }
+    .comments .comment .info {
+      font-size: 11px; }

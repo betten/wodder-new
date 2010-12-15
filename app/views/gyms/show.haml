@@ -8,6 +8,6 @@
   .recent-wods
     .text recent wods:
     - if @gym.has_wods?
-      = render :partial => "shared/wod", :locals => { :wod => @gym.wods.first, :hide_header => true }
+      = render :partial => "shared/wod", :locals => { :wod => @gym.wods.first }
     - else
       %i no wods yet!

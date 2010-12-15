@@ -9,7 +9,9 @@
         - if wod.is_a?(GymWod)
           = link_to wod.gym.name, gym_path(wod.gym)
         - elsif wod.is_a?(UserWod)
-          = link_to wod.user.username, user_path(wod.user)
+          %a{ :href => user_path(wod.user) }
+            .sub posted by
+            = wod.user.username
 
         - if wod.has_comments?
           = link_to wod.comments.count.to_s + ' comments', wod_path(wod), :class => "test"

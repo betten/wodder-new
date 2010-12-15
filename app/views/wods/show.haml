@@ -1,21 +1,40 @@
-%h1 Wod
+.h1 Wod
 
 = render :partial => 'shared/wod', :locals => { :wod => @wod }
 
-%h2 Comments
-- unless @wod.has_comments?
-  %i no comments yet!
+.h2 Comments
+.comments
+  - unless @wod.has_comments?
+    %i no comments yet!
 
-- @wod.comments.each do |comment|
-  = comment
+  - @wod.comments.each do |comment|
+    .comment
+      .info
+        from
+        %strong
+          = link_to comment.user.username, comment.user
+        on
+        %strong= comment.created_at
+      .text= comment.text
 
-%h2 New Comment
-- form_for @comment, :url => wod_comments_path(@wod) do |c|
-  - if @comment.errors.any?
-    %ul
-      - @comment.errors.full_messages.each do |error|
-        %li= error
+.h2 New Comment
+.newcomment
+  - unless @current_user.present?
+    %div
+      Only signed in Wodder users can post comments - 
+      = link_to 'signin', signup_users_path
+      or
+      = link_to 'signup', signup_users_path
 
-  %div= c.text_area :text
+  - form_for @comment, :url => wod_comments_path(@wod) do |c|
+    - if @comment.errors.any?
+      %ul
+        - @comment.errors.full_messages.each do |error|
+          %li= error
 
-  %div= c.submit 'Add Comment'
+    %div= c.text_area :text, :rows => 3
+
+    - if @current_user.present?
+      %div= c.submit 'Add Comment'
+    - else
+      %div= c.submit 'Add Comment', :disabled => true
