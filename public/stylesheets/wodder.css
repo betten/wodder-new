@@ -2,7 +2,7 @@ body {
   font-family: arial; }
 
 a {
-  color: #00e; }
+  color: #0000ee; }
 
 .h1 {
   font-size: 30px;
@@ -71,6 +71,11 @@ a {
       .wod .content .header .sub {
         display: inline;
         font-size: 12px; }
+      .wod .content .header .link {
+        font-size: 11px;
+        font-weight: normal; }
+      .wod .content .header .link:hover {
+        text-decoration: underline; }
     .wod .content .workout a {
       color: #555; }
 
@@ -98,3 +103,15 @@ a {
     padding-bottom: 6px; }
     .comments .comment .info {
       font-size: 11px; }
+
+.delete {
+  display: inline; }
+  .delete .delete-form {
+    display: inline; }
+    .delete .delete-form .delete-button {
+      background: none;
+      border: none;
+      color: #0000ee;
+      cursor: pointer;
+      margin: 0px;
+      padding: 0px; }

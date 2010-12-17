@@ -72,6 +72,7 @@ class Gym
     html.search("a").each do |e|
       e.raw_attributes["target"] = '_blank'
     end
+    html.search("*").each{ |e| (lst = e.parent.children; e.parent = nil; lst.delete(e)) if e.comment? }
     return html
   end
   

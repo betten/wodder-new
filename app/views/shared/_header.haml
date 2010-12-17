@@ -3,7 +3,7 @@
     crossfit wodder
     .sub all of today's wods, all in place
   #status
-    - if @current_user.nil?
+    - if @current_user.blank?
       = render "shared/signupin_form"
     - else
       hi
@@ -20,3 +20,12 @@
     = link_to 'gyms', gyms_path
     |
     = link_to 'users', users_path
+    - if @current_user.present?
+      |
+      = link_to 'my profile', current_user_path
+    - if @current_user.present? and @current_user.admin?
+      |
+      = link_to 'new gym', new_gym_path
+    - if @current_user.present?
+      |
+      = link_to 'new wod', new_wod_path

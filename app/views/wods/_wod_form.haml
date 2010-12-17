@@ -1,0 +1,13 @@
+- form_for wod, :url => wod_path(wod) do |w|
+  - if wod.errors.any?
+    %ul
+      - wod.errors.full_messages.each do|msg|
+        %li= msg
+
+  %div= w.label :title
+  %div= w.text_field :title
+
+  %div= w.label :workout
+  %div= w.text_area :workout, :rows => 10
+
+  = w.submit

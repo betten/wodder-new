@@ -27,9 +27,16 @@ class WodsController < ApplicationController
   end
 
   def edit
+    @wod = UserWod.find(params[:id])
   end
 
   def update
+    @wod = UserWod.find(params[:id])
+    if @wod.update_attributes(params[:user_wod])
+      redirect_to current_user_path
+    else
+      render :edit
+    end
   end
 
   def gym
@@ -41,6 +48,12 @@ class WodsController < ApplicationController
   end
 
   def destroy
+    wod = Wod.find(params[:id])
+    if current_user.is?(wod.user)
+      wod.destroy
+    end
+    flash[:wod_deleted] = true
+    redirect_to current_user
   end
 
   def up_vote
@@ -50,7 +63,7 @@ class WodsController < ApplicationController
       wod.points_from << current_user.id.to_s
       wod.save
     end
-    redirect_to wods_path # should probably redirect :back or to referrer
+    redirect_to :back
   end
 
 end

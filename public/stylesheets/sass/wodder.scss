@@ -1,8 +1,10 @@
+$default_link_color: #00e;
+
 body {
   font-family: arial;
 }
 a {
-  color: #00e;
+  color: $default_link_color;
 }
 
 
@@ -95,6 +97,13 @@ a {
         display: inline;
         font-size: 12px;
       }
+      .link {
+        font-size: 11px;
+        font-weight: normal;
+      }
+      .link:hover {
+        text-decoration: underline;
+      }
     } 
     .workout {
       a {
@@ -139,6 +148,21 @@ a {
     padding-bottom: 6px;
     .info {
       font-size: 11px;
+    }
+  }
+}
+
+.delete {
+  display: inline;
+  .delete-form {
+    display: inline;
+    .delete-button {
+      background: none;
+      border: none;
+      color: $default_link_color;
+      cursor: pointer;
+      margin: 0px;
+      padding: 0px;
     }
   }
 }

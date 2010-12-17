@@ -4,8 +4,21 @@
   %strong= @current_user.username
   here's your profile.  Add wods, update your info, update wods - get Wodding! 
 
+%br
+
+- if flash[:wod_deleted]
+  %div
+    %i Wod successfully deleted.
+  %br
+
 .gymusershow
   .title
     = @current_user.username
     %span.link= link_to "edit profile", edit_user_path(@current_user)
     %span.link= link_to "new wod", new_wod_path
+
+%br
+
+%strong my wods
+- @current_user.wods.each do |wod|
+  = render :partial => "shared/wod", :locals => { :wod => wod }

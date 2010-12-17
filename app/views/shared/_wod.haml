@@ -9,18 +9,26 @@
         - if wod.is_a?(GymWod)
           = link_to wod.gym.name, gym_path(wod.gym)
         - elsif wod.is_a?(UserWod)
+          = link_to wod.title, wod_path(wod)
           %a{ :href => user_path(wod.user) }
             .sub posted by
             = wod.user.username
 
         - if wod.has_comments?
-          = link_to wod.comments.count.to_s + ' comments', wod_path(wod), :class => "test"
+          = link_to pluralize(wod.comments.count, ' comment'), wod_path(wod), :class => "link"
         - else
-          = link_to 'discuss', wod_path(wod), :class => "test"
-    .workout!= wod.workout
+          = link_to 'discuss', wod_path(wod), :class => "link"
 
-:css
-  .test {
-    font-size: 11px;
-    font-weight: normal;
-  }
+        - if wod.is_a?(UserWod) and wod.user.is?(@current_user)
+          = link_to 'edit', edit_wod_path(wod), :class => "link"
+          .delete
+            = form_for :wod, wod, :url => wod_path(wod), :html => { :method => :delete, :class => "delete-form" } do |w|
+              = w.submit 'delete', :class => ["link", "delete-button"]
+
+        - unless wod.is_a?(UserWod) and wod.user.is?(@current_user)
+          = link_to 'save', wods_path, :class => "link"
+    .workout
+      - if wod.is_a?(GymWod)
+        != sanitize(wod.workout)
+      - elsif wod.is_a?(UserWod)
+        != clean_user_input(wod.workout)

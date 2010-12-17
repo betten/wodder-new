@@ -49,4 +49,11 @@ end
 
 class UserWod < Wod
   referenced_in :user, :inverse_of => :user_wods 
+
+  field :title
+
+  validates_presence_of :title
+  validates_presence_of :workout
+  validates_length_of :title, :minimum => 3, :maximum => 40
+  # more validation needed for workout - length, chars, etc.
 end
