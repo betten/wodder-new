@@ -4,11 +4,11 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  validates_presence_of :email, :password
-  validates_uniqueness_of :email, :username
+  validates_presence_of :email, :username, :password
+  validates_uniqueness_of :email
+  validates_uniqueness_of :username
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
-  validates_format_of :username, :with => /[0-9]/
-  validates_format_of :username, :with => /[A-Z0-9_]/i
+  validates_format_of :username, :without => /\W/
   validates_length_of :username, :within => 4..20
   validates_length_of :password, :within => 4..40
   validates_confirmation_of :password

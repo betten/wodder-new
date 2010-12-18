@@ -12,7 +12,20 @@ gem 'mongoid', '2.0.0.beta.17'
 gem 'bson_ext', '1.0.4'
 gem 'hpricot'
 gem 'haml'
-gem 'rspec'
+
+group :test do
+  gem 'rspec-rails', '>= 2.0.0.beta.10'
+end
+
+group :cucumber do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'cucumber-rails'
+  gem 'cucumber', '0.7.3'
+  gem 'rspec-rails', '>= 2.0.0.beta.10'
+  gem 'spork'
+  gem 'launchy'    # So you can do Then show me the page
+end  
 
 # Use unicorn as the web server
 # gem 'unicorn'
