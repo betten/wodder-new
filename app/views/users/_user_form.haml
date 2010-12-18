@@ -1,0 +1,32 @@
+= form_for(user) do |u|
+  - if user.errors.any?
+    %ul
+      - user.errors.full_messages.each do |msg|
+        %li= msg
+
+  %div= u.label :email
+  %div= u.text_field :email
+ 
+  - unless defined? edit and edit 
+    %div= u.label :username
+    %div= u.text_field :username
+
+  - if defined? edit and edit
+    %div
+      = label_tag :password
+      %span{ :style => "font-size: 12px;" } (leave blank to keep current password)
+    %div= password_field_tag :password, nil, :size => 30
+  
+    %div= label_tag :password_confirmation
+    %div= password_field_tag :password_confirmation, nil, :size => 30 # 30 seems to be default size for u.text_field
+  - else
+    %div= u.label :password
+    %div= u.password_field :password
+  
+    %div= u.label :password_confirmation
+    %div= u.password_field :password_confirmation
+
+  - if defined? edit and edit
+    %div= u.submit
+  - else
+    %div= u.submit 'Signup'

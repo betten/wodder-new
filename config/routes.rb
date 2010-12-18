@@ -18,6 +18,7 @@ WodderNew::Application.routes.draw do
   end
 
   match '/users/me', :as => :current_user
+  match '/users/me/edit' => 'users#edit', :as => :edit_current_user
 
   resources :wods do
     resources :comments

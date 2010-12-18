@@ -8,25 +8,7 @@
   .signup
     .sub signing up with Wodder is free and easy as filling out the form below!
     .h2 Signup
-    = form_for(@user) do |u|
-      - if @user.errors.any?
-        %ul
-          - @user.errors.full_messages.each do |msg|
-            %li= msg
-
-      %div= u.label :email
-      %div= u.text_field :email
-  
-      %div= u.label :username
-      %div= u.text_field :username
-
-      %div= u.label :password
-      %div= u.password_field :password
-  
-      %div= u.label :password_confirmation
-      %div= u.password_field :password_confirmation 
-
-      %div= u.submit 'Signup'
+    = render :partial => "user_form", :locals => { :user => @user, :signup => true }
 
   .signin
     .sub already have an account?

@@ -48,6 +48,16 @@ class UsersController < ApplicationController
   end
 
   def update
+    @current_user.email = params[:user][:email]
+    if params[:password].present? or params[:password_confirmation].present?
+      @current_user.password = params[:password]
+      @current_user.password_confirmation = params[:password_confirmation]
+    end
+    if @current_user.save
+      redirect_to current_user_path
+    else
+      render :edit
+    end
   end
 
   def show

@@ -1,4 +1,4 @@
-- form_for wod, :url => wod_path(wod) do |w|
+- form_for wod, :url => url do |w|
   - if wod.errors.any?
     %ul
       - wod.errors.full_messages.each do|msg|

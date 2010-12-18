@@ -1,0 +1,7 @@
+.h1 Edit Me
+.heythere
+  Hey there
+  %strong= @current_user.username
+  here's where you can edit your profile info. 
+
+= render :partial => "user_form", :locals => { :user => @current_user, :edit => true }

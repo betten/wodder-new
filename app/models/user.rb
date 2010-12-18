@@ -7,6 +7,7 @@ class User
   validates_presence_of :email, :password
   validates_uniqueness_of :email, :username
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_format_of :username, :with => /[0-9]/
   validates_format_of :username, :with => /[A-Z0-9_]/i
   validates_length_of :username, :within => 4..20
   validates_length_of :password, :within => 4..40
@@ -23,7 +24,7 @@ class User
   references_many :user_wods, :inverse_of => :user
   references_many :comments, :inverse_of => :user
 
-  before_save :hash_password, :if => :password_changed?, :if => :new_record?
+  before_save :hash_password
 
   def self.authenticate(email, password)
     u = User.first(:conditions => { :email => email })
@@ -60,6 +61,7 @@ class User
   end
 
   def hash_password
+    return true unless self.password_changed? or self.new_record?
     self.salt = generate_salt
     self.password = User.digest(self.password, self.salt)
   end

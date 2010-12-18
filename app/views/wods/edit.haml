@@ -7,4 +7,4 @@
 
 %br
 
-= render :partial => "wod_form", :locals => { :wod => @wod }
+= render :partial => "wod_form", :locals => { :wod => @wod, :url => wod_path(@wod) }
