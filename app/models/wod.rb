@@ -7,6 +7,8 @@ class Wod
 
   embeds_many :comments
 
+  references_many :saved_by, :stored_as => :array, :inverse_of => :saved_wods, :class_name => "User"
+
   def self.all_by_rank
     rank_metrics = []
     self.all.each do |wod|

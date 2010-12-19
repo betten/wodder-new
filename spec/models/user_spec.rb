@@ -32,5 +32,24 @@ describe User do
       @user.password_confirmation = "test"
       @user.should have(0).error_on(:password)
     end
+    it "should not have paid be true" do
+      @user.should_not be_paid
+    end
+  end
+  describe "a user saving wods" do
+    before do 
+      @user = User.new
+    end
+    it "should be able to save multiple wods" do
+      @user.saved_wods.should be_empty
+      3.times do
+        expect {
+          wod = GymWod.new
+          @user.saved_wods << wod
+          @user.saved_wod_ids.should include(wod.id)
+          wod.saved_by_ids.should include(@user.id)
+        }.to change { @user.saved_wod_ids.count }.by(1) and change { wod.saved_by_ids.count }.by(1)
+      end
+    end
   end
 end

@@ -18,11 +18,13 @@ class User
   field :password
   field :salt
   field :admin, :type => Boolean, :default => false
+  field :paid, :type => Boolean, :default => false
 
   key :username
 
   references_many :user_wods, :inverse_of => :user
   references_many :comments, :inverse_of => :user
+  references_many :saved_wods, :stored_as => :array, :inverse_of => :saved_by, :class_name => "Wod"
 
   before_save :hash_password
 
@@ -52,6 +54,10 @@ class User
     return true if user.is_a?(User) and self.id == user.id
     return true if user.is_a?(String) and self.id == user
     return false
+  end
+
+  def is_paid?
+    self.paid
   end
 
   protected
