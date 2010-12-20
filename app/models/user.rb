@@ -60,6 +60,12 @@ class User
     self.paid
   end
 
+  def has_saved_wod?(wod)
+    return self.saved_wod_ids.include?(wod.id) if wod.is_a?(Wod)
+    return self.saved_wod_ids.include?(wod) if wod.is_a?(String)
+    return false
+  end
+
   protected
 
   def generate_salt

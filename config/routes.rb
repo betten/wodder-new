@@ -20,15 +20,19 @@ WodderNew::Application.routes.draw do
   match '/users/me', :as => :current_user
   match '/users/me/edit' => 'users#edit', :as => :edit_current_user
 
+  match '/donate' => 'users#donate', :as => :donate
+
   resources :wods do
     resources :comments
     member do
       get 'up_vote'
+      get 'save'
     end
 
     collection do
       get 'user'
       get 'gym'
+      get 'saved'
     end
   end
 

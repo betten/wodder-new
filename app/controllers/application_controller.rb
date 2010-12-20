@@ -25,10 +25,17 @@ class ApplicationController < ActionController::Base
     return true
   end
 
+  def require_paid
+    unless current_user and current_user.is_paid?
+      flash[:must_be_paid] = true
+      redirect_to donate_path
+    end
+  end 
+
   private
 
   def set_current_user
-    @current_user = User.find(session[:current_user_id]) if session[:current_user_id].present?
+    @current_user ||= User.find(session[:current_user_id]) if session[:current_user_id].present?
   end
 
 end

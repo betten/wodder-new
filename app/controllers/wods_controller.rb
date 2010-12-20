@@ -1,6 +1,7 @@
 class WodsController < ApplicationController
 
-  before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy, :up_vote]
+  before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy, :up_vote, :save, :saved]
+ # before_filter :require_paid, :only => [:save, :saved]
 
   def index
     @wods = Wod.all_by_rank 
@@ -64,6 +65,19 @@ class WodsController < ApplicationController
       wod.save
     end
     redirect_to :back
+  end
+
+  def save
+    wod = Wod.find(params[:id])
+    unless current_user.has_saved_wod?(wod)
+      current_user.saved_wods << wod
+      current_user.save
+    end
+    #redirect_to :back
+  end
+
+  def saved
+    # DRY up the check for save action above
   end
 
 end

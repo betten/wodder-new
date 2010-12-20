@@ -52,4 +52,27 @@ describe User do
       end
     end
   end
+  describe "with saved wods" do
+    before do
+      @user = User.new
+      @wods = [GymWod.new, UserWod.new, GymWod.new, UserWod.new]
+      @wods.each do |wod|
+        @user.saved_wods << wod
+      end
+    end
+    it "should be able to check wods with has_saved_wod?" do
+      @wods.each do |wod|
+        @user.has_saved_wod?(wod).should be true
+      end
+      @user.has_saved_wod?(GymWod.new).should be false
+      @user.has_saved_wod?(UserWod.new).should be false
+    end
+    it "should be able to get saved wods with saved_wods" do
+      @wods.each do |wod|
+        @user.saved_wods.should include(wod)
+      end
+      @user.saved_wods.should_not include(GymWod.new)
+      @user.saved_wods.should_not include(UserWod.new)
+    end
+  end
 end
