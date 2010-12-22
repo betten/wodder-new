@@ -20,8 +20,8 @@ class Gym
   validates_presence_of :name
   validates_uniqueness_of :name
   validates_presence_of :url
-  validates_presence_of :wod_xpath
-  validates_presence_of :id_xpath
+  validates_presence_of :wod_xpath, :if => :approved?
+  validates_presence_of :id_xpath, :if => :approved?
 
   class << self
     def approved
@@ -41,6 +41,10 @@ class Gym
 
   def has_wods?
     self.gym_wod.present?
+  end
+
+  def approved?
+    self.approved
   end
 
   def check_for_new_wod

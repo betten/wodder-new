@@ -9,6 +9,7 @@ class GymsController < ApplicationController
 
   def show
     @gym = Gym.find(params[:id])
+    redirect_to gyms_path unless @gym.approved?
   end
 
   def add
@@ -25,10 +26,11 @@ class GymsController < ApplicationController
     if @gym.save
       redirect_to @gym and return if current_user.is_admin?
       flash[:created] = true
+      redirect_to new_gym_path
     else
       render :add and return if current_user.is_admin?
+      render :new
     end
-    render :new
   end
 
   def edit

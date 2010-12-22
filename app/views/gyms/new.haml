@@ -1,5 +1,27 @@
 .h1 New Gym
 
-Hey there
-%strong= @current_user.username
-know of a gym or Crossfit affiliate not on the list? Fill out and submit the form below - although we can't guarantee every gym will be added to the list, primarily due to technical reasons, we will do our best to add the gym as soon as possible.
+%div
+  Hey there
+  %strong= @current_user.username
+  know of a gym or Crossfit affiliate not on the list? Fill out and submit the form below - although we can't guarantee every gym will be added to the list, primarily due to technical reasons, we will do our best to add the gym as soon as possible.
+
+%br
+
+- if flash[:created]
+  %div
+    %i Your gym has been submitted for approval. Thanks for your input!
+  %br
+
+= form_for(@gym) do |g|
+  - if @gym.errors.any?
+    %ul
+      - @gym.errors.full_messages.each do |error|
+        %li= error
+
+  %div= g.label :name
+  %div= g.text_field :name
+
+  %div= g.label :url
+  %div= g.text_field :url
+
+  %div= g.submit 'Submit Gym'

@@ -35,7 +35,7 @@ describe GymsController do
       it "should flash and render new if save success and current_user is not admin" do
         @gym.should_receive(:save).and_return(true)
         post :create
-        response.should render_template(:new)
+        response.should redirect_to(new_gym_path)
         flash[:created].should be_true
       end
       it "should render add if save fails and current_user.is_admin?" do
