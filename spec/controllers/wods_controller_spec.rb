@@ -5,14 +5,25 @@ describe WodsController do
     @user = User.new
     User.stub!(:find).with(@user.id).and_return(@user)
   end
+
+  def user_is_signed_in
+    session[:current_user_id] = @user.id
+  end
+  def user_is_paid
+    @user.stub!(:is_paid?).and_return(true)
+  end
+  def user_is_not_paid
+    @user.stub!(:is_paid?).and_return(false)
+  end
+
   describe "saved wods" do
     it "should not allow not signed in users access to saved wods" do
       get :saved
       response.should redirect_to signup_users_path
     end
     it "should not allow not paid users access to saved wods" do
-      @user.stub!(:is_paid?).and_return(false)
-      session[:current_user_id] = @user.id
+      user_is_signed_in
+      user_is_not_paid
       get :saved
       response.should redirect_to donate_path
     end
@@ -25,16 +36,16 @@ describe WodsController do
         response.should redirect_to signup_users_path
       end
       it "should not allow not paid users access to save wods" do
-        @user.stub!(:is_paid?).and_return(false)
-        session[:current_user_id] = @user.id
+        user_is_not_paid
+        user_is_signed_in
         get :saved
         response.should redirect_to donate_path
       end
     end
     describe "updating user" do
       before do
-        @user.stub!(:is_paid?).and_return(true)
-        session[:current_user_id] = @user.id
+        user_is_paid
+        user_is_signed_in
         @wod = GymWod.new
         request.env["HTTP_REFERER"] = "/wods"
       end
@@ -52,6 +63,17 @@ describe WodsController do
         get :save, :id => @wod.id
         response.should redirect_to request.env["HTTP_REFERER"]
       end
+    end
+  end
+
+  describe "unsaving wods" do
+    describe "permissions" do
+      it "should not allow a not signed in user to unsave wods" # does this even make sense? how/why would a non-signed-in user be trying to unsave anything?
+      it "should not allow a not paid user to unsave wods"
+    end
+    describe "updating user" do
+      it "should remove wod from user.saved_wods, decreasing user.saved_wods by 1, and save user"
+      it "should redirect to :back on call to unsave"
     end
   end
 end

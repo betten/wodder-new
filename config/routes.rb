@@ -28,6 +28,7 @@ WodderNew::Application.routes.draw do
     member do
       get 'up_vote'
       get 'save'
+      get 'unsave'
     end
 
     collection do

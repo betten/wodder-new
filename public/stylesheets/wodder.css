@@ -76,6 +76,11 @@ a {
         font-weight: normal; }
       .wod .content .header .link:hover {
         text-decoration: underline; }
+      .wod .content .header .saved {
+        background: #0000ee;
+        color: #fff;
+        font-size: 11px;
+        text-transform: uppercase; }
     .wod .content .workout a {
       color: #555; }
 

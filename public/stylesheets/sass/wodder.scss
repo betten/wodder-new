@@ -104,6 +104,12 @@ a {
       .link:hover {
         text-decoration: underline;
       }
+      .saved {
+        background: $default_link_color;
+        color: #fff;
+        font-size: 11px;
+        text-transform: uppercase;
+      }
     } 
     .workout {
       a {
