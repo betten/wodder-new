@@ -21,8 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def require_admin
-    #redirect_to wods_path unless current_user and current_user.is_admin?
-    return true
+    redirect_to wods_path unless current_user and current_user.is_admin?
   end
 
   def require_paid

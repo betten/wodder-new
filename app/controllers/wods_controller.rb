@@ -4,7 +4,7 @@ class WodsController < ApplicationController
   before_filter :require_paid, :only => [:save, :unsave, :saved]
 
   def index
-    @wods = Wod.all_by_rank 
+    @wods = Wod.all.ranked
   end
 
   def show
@@ -41,11 +41,11 @@ class WodsController < ApplicationController
   end
 
   def gym
-    @wods = GymWod.all_by_rank
+    @wods = GymWod.all.ranked
   end
 
   def user
-    @wods = UserWod.all_by_rank
+    @wods = UserWod.all.ranked
   end
 
   def destroy

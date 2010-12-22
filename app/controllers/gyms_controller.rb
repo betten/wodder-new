@@ -1,13 +1,18 @@
 class GymsController < ApplicationController
 
-  before_filter :require_admin, :only => [:new, :create, :update, :test_xpath]
+  before_filter :require_signin, :only => [:new, :create]
+  before_filter :require_admin, :only => [:add, :update, :test_xpath, :admin]
 
   def index
-    @gyms = Gym.all
+    @gyms = Gym.all.approved
   end
 
   def show
     @gym = Gym.find(params[:id])
+  end
+
+  def add
+    @gym = Gym.new
   end
 
   def new
@@ -16,11 +21,14 @@ class GymsController < ApplicationController
 
   def create
     @gym = Gym.new(params[:gym])
+    @gym.approved = false unless current_user.is_admin? # force approved to false for non admin
     if @gym.save
-      redirect_to @gym
+      redirect_to @gym if current_user.is_admin?
+      flash[:created] = true
     else
-      render :new
+      render :add and return if current_user.is_admin?
     end
+    render :new
   end
 
   def edit
@@ -44,6 +52,9 @@ class GymsController < ApplicationController
     rescue
       render :text => "problems testing - verify that url / xpath are correct"
     end
+  end
+
+  def admin
   end
 
 end

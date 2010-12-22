@@ -43,6 +43,8 @@ WodderNew::Application.routes.draw do
     end
 
     collection do
+      get 'add'
+      get 'admin'
       post 'test_xpath'
     end
   end

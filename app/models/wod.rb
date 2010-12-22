@@ -9,15 +9,21 @@ class Wod
 
   references_many :saved_by, :stored_as => :array, :inverse_of => :saved_wods, :class_name => "User"
 
-  def self.all_by_rank
-    rank_metrics = []
-    self.all.each do |wod|
-      rank_metrics.push([wod.rank_metric, wod])
+  class << self
+    def ranked
+      criteria.descending(:points)
     end
-    rank_metrics.sort{ |a,b| b[0] <=> a[0] }.collect{ |x| x[1] }
   end
 
-  def rank_metric
+  #def self.all_by_rank
+  #  rank_metrics = []
+  #  self.all.each do |wod|
+  #    rank_metrics.push([wod.rank_metric, wod])
+  #  end
+  #  rank_metrics.sort{ |a,b| b[0] <=> a[0] }.collect{ |x| x[1] }
+  #end
+
+  #def rank_metric
     # http://news.ycombinator.com/item?id=231209
     #t = (Time.now - self.created_at.to_i).to_i / 3600
     #p = self.points - 1
@@ -27,12 +33,12 @@ class Wod
     # for time like hn, each wod will have it's 24hr period
     # to make it to the top, and newer ones should be at
     # the bottom to start
-    self.points
+    #self.points
     # actually, there should be some correction for time,
     # although having a wod with 2 points ranked ahead of
     # a wod with 12 doesn't make sense, unless we show when
     # a wod was added - not sure what to do here yet...
-  end
+  #end
 
   def has_point_from_user?(user)
     return self.points_from.include?(user.id.to_s) if user.is_a?(User)

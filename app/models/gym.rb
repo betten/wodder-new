@@ -10,6 +10,8 @@ class Gym
   field :wod_xpath
   field :current_id
   field :id_xpath
+  field :approved, :type => Boolean, :default => false
+  field :has_errors, :type => Boolean, :default => false 
 
   references_many :gym_wod, :inverse_of => :gym
 
@@ -20,6 +22,18 @@ class Gym
   validates_presence_of :url
   validates_presence_of :wod_xpath
   validates_presence_of :id_xpath
+
+  class << self
+    def approved
+      criteria.where(:approved => true)
+    end
+    def unapproved
+      criteria.where(:approved => false)
+    end
+    def with_errors
+      criteria.where(:has_errors => true)
+    end
+  end
 
   def wods
     self.gym_wod

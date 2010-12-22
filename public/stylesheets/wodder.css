@@ -41,6 +41,15 @@ a {
     font-size: 12px;
     padding-top: 6px; }
 
+#content {
+  margin: 0px 20px; }
+
+#footer {
+  border-top: 8px solid #000;
+  margin-top: 30px;
+  padding: 12px;
+  text-align: center; }
+
 #ranked-wods .wod-wrapper .rank {
   float: left;
   font-weight: bold;
@@ -95,12 +104,14 @@ a {
     font-weight: bold;
     padding-bottom: 10px; }
 
-#signupin .signup, #signupin .signin {
-  float: left; }
-#signupin .signin {
-  border-left: 1px solid #ccc;
-  margin-left: 30px;
-  padding-left: 30px; }
+#signupin {
+  overflow: auto; }
+  #signupin .signup, #signupin .signin {
+    float: left; }
+  #signupin .signin {
+    border-left: 1px solid #ccc;
+    margin-left: 30px;
+    padding-left: 30px; }
 
 .comments {
   padding-bottom: 20px; }
