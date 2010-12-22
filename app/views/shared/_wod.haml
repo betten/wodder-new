@@ -26,7 +26,10 @@
               = w.submit 'delete', :class => ["link", "delete-button"]
 
         - unless wod.is_a?(UserWod) and wod.user.is?(@current_user)
-          = link_to 'save', wods_path, :class => "link"
+          - if @current_user and @current_user.has_saved_wod?(wod)
+            %span.saved saved
+          - else
+            = link_to 'save', save_wod_path(wod), :class => "link"
     .workout
       - if wod.is_a?(GymWod)
         != sanitize(wod.workout)

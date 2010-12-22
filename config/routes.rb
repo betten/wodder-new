@@ -21,6 +21,7 @@ WodderNew::Application.routes.draw do
   match '/users/me/edit' => 'users#edit', :as => :edit_current_user
 
   match '/donate' => 'users#donate', :as => :donate
+  match '/donated' => 'users#donated', :as => :donated
 
   resources :wods do
     resources :comments

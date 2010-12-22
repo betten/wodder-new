@@ -61,9 +61,14 @@ class User
   end
 
   def has_saved_wod?(wod)
+    return false unless has_saved_wods?
     return self.saved_wod_ids.include?(wod.id) if wod.is_a?(Wod)
     return self.saved_wod_ids.include?(wod) if wod.is_a?(String)
     return false
+  end
+
+  def has_saved_wods?
+    self.saved_wods.present?
   end
 
   protected

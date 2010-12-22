@@ -28,6 +28,9 @@
 %br
 
 %strong my saved wods
-%div
-  %i no wods yet!
-  %a{ :href => "#" } users who donate $5 or more to Crossfit Wodder are able to save wods
+- unless @current_user.has_saved_wods?
+  %div
+    %i no wods yet!
+    %a{ :href => "#" } users who donate $5 or more to Crossfit Wodder are able to save wods
+- @current_user.saved_wods.each do |wod|
+  = render :partial => "shared/wod", :locals => { :wod => wod }

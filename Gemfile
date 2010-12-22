@@ -14,7 +14,7 @@ gem 'hpricot'
 gem 'haml'
 
 group :test do
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
+  gem 'rspec-rails', '2.3.1'
 end
 
 group :cucumber do
@@ -22,7 +22,7 @@ group :cucumber do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber', '0.7.3'
-  gem 'rspec-rails', '>= 2.0.0.beta.10'
+  gem 'rspec-rails', '2.3.1'
   gem 'spork'
   gem 'launchy'    # So you can do Then show me the page
 end  

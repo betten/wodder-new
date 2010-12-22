@@ -1,0 +1,4 @@
+.h1 Saved Wods
+
+- @current_user.saved_wods.each do |wod|
+  = render :partial => "shared/wod", :locals => { :wod => wod }

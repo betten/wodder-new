@@ -68,4 +68,7 @@ class UsersController < ApplicationController
   def destroy
   end
 
+  def donate
+  end
+
 end
