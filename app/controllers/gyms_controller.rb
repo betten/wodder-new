@@ -23,7 +23,7 @@ class GymsController < ApplicationController
     @gym = Gym.new(params[:gym])
     @gym.approved = false unless current_user.is_admin? # force approved to false for non admin
     if @gym.save
-      redirect_to @gym if current_user.is_admin?
+      redirect_to @gym and return if current_user.is_admin?
       flash[:created] = true
     else
       render :add and return if current_user.is_admin?
