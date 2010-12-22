@@ -30,15 +30,18 @@ describe WodsController do
   end
 
   describe "saving wods" do
+    before do
+      @wod = GymWod.new
+    end
     describe "permissions" do
       it "should not allow not signed in users to save wods" do
-        get :saved
+        get :save, :id => @wod.id
         response.should redirect_to signup_users_path
       end
       it "should not allow not paid users access to save wods" do
         user_is_not_paid
         user_is_signed_in
-        get :saved
+        get :save, :id => @wod.id
         response.should redirect_to donate_path
       end
     end
@@ -68,12 +71,44 @@ describe WodsController do
 
   describe "unsaving wods" do
     describe "permissions" do
-      it "should not allow a not signed in user to unsave wods" # does this even make sense? how/why would a non-signed-in user be trying to unsave anything?
-      it "should not allow a not paid user to unsave wods"
+      before do
+        @wod = GymWod.new
+      end
+      it "should not allow a not signed in user to unsave wods" do # does this even make sense? how/why would a non-signed-in user be trying to unsave anything?
+        get :unsave, :id => @wod.id
+        response.should redirect_to signup_users_path
+      end
+      it "should not allow a not paid user to unsave wods" do
+        user_is_not_paid
+        user_is_signed_in
+        get :unsave, :id => @wod.id
+        response.should redirect_to donate_path
+      end
     end
     describe "updating user" do
-      it "should remove wod from user.saved_wods, decreasing user.saved_wods by 1, and save user"
-      it "should redirect to :back on call to unsave"
+      before do
+        user_is_paid
+        user_is_signed_in
+        @wod = GymWod.new
+        request.env["HTTP_REFERER"] = "/wods"
+      end
+      it "should remove wod from user.saved_wods and remove user id from wod and save both" do
+        @user.saved_wods << @wod
+        Wod.should_receive(:find).with(@wod.id).and_return(@wod)
+        @user.should_receive(:save)
+        @wod.should_receive(:save)
+        expect {
+          get :unsave, :id => @wod.id
+        }.to change { @user.saved_wods.count }.by(-1) and change { @user.saved_wod_ids.count }.by(-1) and change { @wod.saved_by_ids.count }.by(-1)
+        @user.saved_wods.should_not include(@wod)
+        @user.saved_wod_ids.should_not include(@wod.id)
+        @wod.saved_by_ids.should_not include(@user.id)
+      end  
+      it "should redirect to :back on call to unsave" do
+        Wod.should_receive(:find).with(@wod.id).and_return(@wod)
+        get :unsave, :id => @wod.id
+        response.should redirect_to request.env["HTTP_REFERER"]
+      end 
     end
   end
 end

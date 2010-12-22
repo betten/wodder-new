@@ -1,7 +1,7 @@
 class WodsController < ApplicationController
 
-  before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy, :up_vote, :save, :saved]
-  before_filter :require_paid, :only => [:save, :saved]
+  before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy, :up_vote, :save, :unsave, :saved]
+  before_filter :require_paid, :only => [:save, :unsave, :saved]
 
   def index
     @wods = Wod.all_by_rank 
@@ -73,6 +73,18 @@ class WodsController < ApplicationController
       current_user.saved_wods << wod
       current_user.save
     end
+    redirect_to :back
+  end
+
+  def unsave
+    wod = Wod.find(params[:id])
+    # there's gotta be another way to destroy many-to-many
+    # relations using mongoid
+    @current_user.saved_wods.delete(wod)
+    @current_user.saved_wod_ids.delete(wod.id)
+    @current_user.save
+    wod.saved_by_ids.delete(@current_user.id)
+    wod.save
     redirect_to :back
   end
 
