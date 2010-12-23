@@ -23,6 +23,7 @@ class GymsController < ApplicationController
   def create
     @gym = Gym.new(params[:gym])
     @gym.approved = false unless current_user.is_admin? # force approved to false for non admin
+    @gym.created_by = @current_user
     if @gym.save
       redirect_to @gym and return if current_user.is_admin?
       flash[:created] = true
@@ -57,6 +58,7 @@ class GymsController < ApplicationController
   end
 
   def admin
+    @gyms = Gym.all
   end
 
 end

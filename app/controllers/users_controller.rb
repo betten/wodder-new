@@ -63,6 +63,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     redirect_to current_user_path and return if current_user? and @current_user.is?(@user)
+    @wod = @user.wods.most_recent if @user.has_wods? 
   end
 
   def destroy

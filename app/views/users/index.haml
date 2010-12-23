@@ -1,4 +1,5 @@
 .h1 Users
 
 - @users.each do |user|
+  - next if user.is_admin?
   %div= link_to user.username, user

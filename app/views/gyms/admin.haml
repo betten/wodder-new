@@ -1,0 +1,18 @@
+.h1 Admin
+
+%table
+  %tr.header
+    %td Name
+    %td Url
+    %td Approved?
+    %td Created By
+    %td Edit
+  -@gyms.each do |gym|
+    %tr
+      %td= gym.name
+      %td= gym.url
+      %td= gym.approved
+      %td
+        - if gym.has_created_by?
+          = link_to gym.created_by.username, user_path(gym.created_by)
+      %td= link_to 'edit', edit_gym_path(gym)

@@ -5,9 +5,11 @@
     %span.link= link_to "all wods", wods_path
 
   .recent-wods
-    .text recent wods:
-    - if @user.has_wods?
-      - @user.wods.each do |wod|
-        = render :partial => "shared/wod", :locals => { :wod => wod }
+    .text 
+      most recent wod
+      - if @wod
+        = " - added #{time_ago_in_words(@wod.created_at)} ago"
+    - if @wod
+      = render :partial => "shared/wod", :locals => { :wod => @wod }
     - else
       %i no wods yet!

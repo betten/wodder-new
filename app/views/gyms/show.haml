@@ -4,10 +4,15 @@
     %span.link= link_to "go to #{@gym.name}", @gym.url, :target => "_blank"
     %span.link= link_to "all gyms", gyms_path
     %span.link= link_to "all wods", wods_path
+  - if @gym.created_at
+    .sub= "submitted to Wodder #{time_ago_in_words(@gym.created_at)} ago"
 
   .recent-wods
-    .text recent wods:
+    .text
+      = "most recent wod"
+      - if @gym.has_wods?
+        = "- added #{time_ago_in_words(@gym.wods.most_recent.created_at)} ago"
     - if @gym.has_wods?
-      = render :partial => "shared/wod", :locals => { :wod => @gym.wods.first }
+      = render :partial => "shared/wod", :locals => { :wod => @gym.wods.most_recent }
     - else
       %i no wods yet!

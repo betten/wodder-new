@@ -4,6 +4,7 @@ require 'open-uri'
 
 class Gym
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   field :name
   field :url
@@ -11,7 +12,8 @@ class Gym
   field :current_id
   field :id_xpath
   field :approved, :type => Boolean, :default => false
-  field :has_errors, :type => Boolean, :default => false 
+  field :has_errors, :type => Boolean, :default => false
+  field :created_by_user_id
 
   references_many :gym_wod, :inverse_of => :gym
 
@@ -45,6 +47,19 @@ class Gym
 
   def approved?
     self.approved
+  end
+
+  def created_by
+    User.find(self.created_by_user_id) if has_created_by?
+  end
+
+  def has_created_by?
+    self.created_by_user_id.present?
+  end
+
+  def created_by=(user)
+    self.created_by_user_id = user if user.is_a?(String)
+    self.created_by_user_id = user.id.to_s if user.is_a?(User)
   end
 
   def check_for_new_wod

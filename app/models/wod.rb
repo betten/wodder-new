@@ -13,6 +13,9 @@ class Wod
     def ranked
       criteria.descending(:points)
     end
+    def most_recent
+      criteria.descending(:created_at).first
+    end
   end
 
   #def self.all_by_rank
