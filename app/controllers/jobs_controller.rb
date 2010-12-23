@@ -3,13 +3,13 @@ class JobsController < ApplicationController
   before_filter :require_admin
 
   def update_all
-    @gyms = Gym.all
+    @gyms = Gym.all.approved
   end
 
   def update
-    gym = Gym.find(params[:id])
-    status = gym.check_for_new_wod
-    render :json => status
+    @gym = Gym.find(params[:id])
+    @status = @gym.check_for_new_wod
+    render :json => @status and return if request.xhr?
   end
 
   def clear_all

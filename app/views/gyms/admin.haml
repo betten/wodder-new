@@ -1,18 +1,48 @@
 .h1 Admin
 
-%table
+%table#admin-table
   %tr.header
     %td Name
     %td Url
-    %td Approved?
-    %td Created By
-    %td Edit
+    %td.center Approved?
+    %td.center Errors?
+    %td.center Created By
+    %td.center Edit
+    %td.center Jobs
   -@gyms.each do |gym|
     %tr
       %td= gym.name
       %td= gym.url
-      %td= gym.approved
-      %td
+      %td.center{ :class => [gym.approved? && "green", !gym.approved? && "red"] }= gym.approved?
+      %td.center{ :class => [!gym.has_errors? && "green", gym.has_errors? && "red"] }=gym.has_errors?
+      %td.center
         - if gym.has_created_by?
           = link_to gym.created_by.username, user_path(gym.created_by)
-      %td= link_to 'edit', edit_gym_path(gym)
+      %td.center= link_to 'edit', edit_gym_path(gym)
+      %td.center
+        = link_to 'clear', job_clear_path(gym)
+        = "/"
+        = link_to 'update', job_update_path(gym)
+
+%div
+  = link_to "clear all", jobs_clear_path
+  = "/"
+  = link_to "update all", jobs_update_path
+
+:css
+  #admin-table td {
+    padding-right: 16px;
+  }
+  #admin-table td.center {
+    text-align: center;
+  }
+  #admin-table .header {
+    font-weight: bold;
+  }
+  #admin-table td.red {
+    color: #f00;
+    font-weight: bold;
+  }
+  #admin-table td.green {
+    color: #090;
+  }

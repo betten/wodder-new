@@ -1,7 +1,10 @@
-.h1 Jobs / Clear
+.h1 Jobs / Update
 
-.h2 gym data cleared
+.h2= @gym.name
+
+%div= @status.keys
 
 %br
 
 %div= link_to 'back to admin', admin_gyms_path
+

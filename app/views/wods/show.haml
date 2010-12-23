@@ -13,8 +13,8 @@
         from
         %strong
           = link_to comment.user.username, comment.user
-        on
-        %strong= comment.created_at
+        = time_ago_in_words(comment.created_at)
+        ago
       .text= comment.text
 
 .h2 New Comment
@@ -22,9 +22,7 @@
   - unless @current_user.present?
     %div
       Only signed in Wodder users can post comments - 
-      = link_to 'signin', signup_users_path
-      or
-      = link_to 'signup', signup_users_path
+      = link_to 'signin or signup', signup_users_path
 
   - form_for @comment, :url => wod_comments_path(@wod) do |c|
     - if @comment.errors.any?

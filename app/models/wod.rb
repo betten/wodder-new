@@ -16,6 +16,9 @@ class Wod
     def most_recent
       criteria.descending(:created_at).first
     end
+    def within_past_24h
+      criteria.where(:created_at.gte => ( Time.now - ( 60*60*24 ) ) )
+    end
   end
 
   #def self.all_by_rank

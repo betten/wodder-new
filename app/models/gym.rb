@@ -35,6 +35,9 @@ class Gym
     def with_errors
       criteria.where(:has_errors => true)
     end
+    def without_errors
+      criteria.where(:has_errors => false)
+    end
   end
 
   def wods
@@ -47,6 +50,10 @@ class Gym
 
   def approved?
     self.approved
+  end
+
+  def has_errors?
+    self.has_errors
   end
 
   def created_by
@@ -78,7 +85,11 @@ class Gym
         else
           status[:latest] = true
         end
+        self.has_errors = false
+        self.save
       rescue
+        self.has_errors = true
+        self.save
         status[:error] = true
       end
     end

@@ -41,7 +41,7 @@ class GymsController < ApplicationController
   def update
     @gym = Gym.find(params[:id])
     if @gym.update_attributes(params[:gym])
-      redirect_to @gym
+      redirect_to admin_gyms_path
     else
       render :edit
     end
