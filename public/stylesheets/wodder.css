@@ -41,8 +41,16 @@ a {
     font-size: 12px;
     padding-top: 6px; }
 
-#content {
-  margin: 0px 20px; }
+#sider {
+  text-align: center; }
+  #sider .block {
+    padding-bottom: 24px; }
+  #sider .contact {
+    font-size: 13px; }
+  #sider .donate {
+    font-size: 13px; }
+    #sider .donate div {
+      padding-bottom: 4px; }
 
 #footer {
   border-top: 8px solid #000;
@@ -103,15 +111,6 @@ a {
   .gymusershow .recent-wods .text {
     font-weight: bold;
     padding-bottom: 10px; }
-
-#signupin {
-  overflow: auto; }
-  #signupin .signup, #signupin .signin {
-    float: left; }
-  #signupin .signin {
-    border-left: 1px solid #ccc;
-    margin-left: 30px;
-    padding-left: 30px; }
 
 .comments {
   padding-bottom: 20px; }

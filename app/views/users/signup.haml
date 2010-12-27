@@ -4,12 +4,12 @@
   .notice You must be signed in to do that! Signin or signup below - it's free and easy!
 
 #signupin
-  .signup
+  .signup.grid_6.alpha
     .sub signing up with Wodder is free and easy as filling out the form below!
     .h2 Signup
     = render :partial => "user_form", :locals => { :user => @user, :signup => true }
 
-  .signin
+  .signin.grid_6.omega
     .sub already have an account?
     .h2 Signin
     = form_for @user, :url => signin_users_path do

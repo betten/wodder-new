@@ -54,7 +54,22 @@ a {
 }
 
 #content {
-  margin: 0px 20px;
+}
+
+#sider {
+  text-align: center;
+  .block {
+    padding-bottom: 24px;
+  }
+  .contact {
+    font-size: 13px;
+  }
+  .donate {
+    font-size: 13px;
+    div {
+      padding-bottom: 4px;
+    }
+  }
 }
 
 #footer {
@@ -146,19 +161,6 @@ a {
     }
   }
 }
-
-#signupin {
-  overflow: auto;
-  .signup, .signin {
-    float: left;
-  }
-  .signin {
-    border-left: 1px solid #ccc;
-    margin-left: 30px;
-    padding-left: 30px;
-  }
-}
-
 
 .comments {
   padding-bottom: 20px;
