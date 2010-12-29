@@ -2,6 +2,11 @@
 
 - if flash[:must_be_signed_in]
   .notice You must be signed in to do that! Signin or signup below - it's free and easy!
+- if flash[:donated]
+  .notice 
+    Thanks for your donation! If you signup or signin now your account will be updated to allow you to save wods. If you run into any problems just shoot us an email at
+    %a{ :href => "mailto:crossfitwodder@gmail.com" } crossfitwodder@gmail.com
+    and we'll get the situation resolved asap.
 
 #signupin
   .signup.grid_6.alpha

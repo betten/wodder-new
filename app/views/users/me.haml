@@ -9,6 +9,13 @@
     %i Wod successfully deleted.
   %br
 
+- if flash[:donated]
+  %div
+    %i Thanks for your donation! Get started saving your favorite wods! If you run into any problems trying to save wods just shoot us an email at
+    %a{ :href => "mailto:crossfitwodder@gmail.com" } crossfitwodder@gmail.com
+    and we'll get the situation resolved asap.
+  %br
+
 .gymusershow
   .title
     = @current_user.username

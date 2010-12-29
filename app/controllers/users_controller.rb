@@ -9,6 +9,13 @@ class UsersController < ApplicationController
   end
 
   def me
+    # if a user signs in or up right after donating
+    if session[:donated]
+      current_user.paid = true
+      current_user.save
+      session[:donated] = nil
+      flash[:donated] = true
+    end
   end
 
   def signup
