@@ -4,6 +4,8 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  RESERVED_WORDS = %w(wods signup signin signout edit show create delete index update destroy donate)
+
   validates_presence_of :email, :username, :password
   validates_uniqueness_of :email
   validates_uniqueness_of :username
@@ -12,6 +14,9 @@ class User
   validates_length_of :username, :within => 4..20
   validates_length_of :password, :within => 4..40
   validates_confirmation_of :password
+  validate do |user|
+    user.errors[:username] << "is already taken" if RESERVED_WORDS.include?(user.username)
+  end
 
   field :username
   field :email

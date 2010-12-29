@@ -35,6 +35,10 @@ describe User do
     it "should not have paid be true" do
       @user.should_not be_paid
     end
+    it "should not allow username to be 'wods' or other reserved words" do
+      @user.username = "wods"
+      @user.should have(1).error_on(:username)
+    end
   end
   describe "a user saving wods" do
     before do 
