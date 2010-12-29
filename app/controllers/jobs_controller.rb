@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
 
-  before_filter :require_admin
+  before_filter :require_admin#, :unless => :call_from_self? # using a rake task to call cron jobs
 
   def update_all
     @gyms = Gym.all.approved

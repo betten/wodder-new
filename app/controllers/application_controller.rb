@@ -31,6 +31,10 @@ class ApplicationController < ActionController::Base
     end
   end 
 
+  def call_from_self?
+    return true if request.remote_ip.eql?("127.0.0.1")
+  end
+
   private
 
   def set_current_user
