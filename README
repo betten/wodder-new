@@ -1,12 +1,15 @@
 todo:
 
-TESTING
+validate users model to prevent reserved action names as usernames
+add adsense/analytics
+implement cron job for updating gym wods
+write script to transfer current wodder sqlite data to new wodder
 
-implement wod points/votes in views
-implement edits for users/wods/gyms
-implement further admin capabilities
+--------------
 
-
+DONE implement wod points/votes in views
+DONE implement edits for users/wods/gyms
+DONE implement further admin capabilities
 
 >>>>>>>>>>>>>>>>>>>>>>>>
 routes pretty well set at the moment, leaving this here for reference
