@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
 
   before_filter :require_signin, :only => [:me, :edit, :update]
+  before_filter :verify_donation, :only => [:donate]
+
 
   def index
     @users = User.all
@@ -70,6 +72,24 @@ class UsersController < ApplicationController
   end
 
   def donate
+    flash[:donated] = true
+    if current_user
+      current_user.paid = true
+      current_user.save
+      redirect_to current_user
+    else
+      session[:donated] = true
+      redirect_to signup_users_path
+    end
   end
+
+  private
+
+  def verify_donation
+    [:tx, :st, :amt, :cc, :sig].each do |param|
+      redirect_to wods_path and return false unless params[param].present?
+    end
+  end
+
 
 end
