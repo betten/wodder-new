@@ -1,41 +1,42 @@
 !!!
 %html
-%head
-  %title Crossfit Wodder
+  %head
+    %title Crossfit Wodder
   
-  <!-- css -->
-  = stylesheet_link_tag 'reset'
-  = stylesheet_link_tag 'wodder'
-  = stylesheet_link_tag '960'
-  = yield :css
+    <!-- css -->
+    = stylesheet_link_tag 'reset'
+    = stylesheet_link_tag 'wodder'
+    = stylesheet_link_tag '960'
+    = yield :css
 
-  <!-- js -->
-  = javascript_include_tag 'jquery-1.4.4.min.js'
-  = yield :js
-  :javascript
-    $(document).ready(function() {
-      //$('.wod-wrapper:odd').css('background', '#ddd');
-      $('.delete-button').click(function() {
-        return confirm("Are you sure?");
+    <!-- js -->
+    = javascript_include_tag 'jquery-1.4.4.min.js'
+    = yield :js
+    :javascript
+      $(document).ready(function() {
+        //$('.wod-wrapper:odd').css('background', '#ddd');
+        $('.delete-button').click(function() {
+          return confirm("Are you sure?");
+        });
+        //$('.upvote').click(function() {
+        //  var path = $(this).find('a').attr('href');
+        //  $.get(path);
+        //  var count = $(this).siblings('.count');
+        //  count.text(parseInt(count.text()) + 1);
+        //  $(this).hide();
+        //  return false;
+        //});
       });
-      //$('.upvote').click(function() {
-      //  var path = $(this).find('a').attr('href');
-      //  $.get(path);
-      //  var count = $(this).siblings('.count');
-      //  count.text(parseInt(count.text()) + 1);
-      //  $(this).hide();
-      //  return false;
-      //});
-    });
 
-  = csrf_meta_tag
-%body
-  = render "shared/header"
-  .clear
-  #content.container_16
-    .grid_12
-      = yield
-    .grid_4
-      = render "shared/sider"
-  .clear
-  = render "shared/footer"
+    = csrf_meta_tag
+  %body
+    = render "shared/header"
+    .clear
+    #content.container_16
+      .grid_12
+        = yield
+      .grid_4
+        = render "shared/sider"
+    .clear
+    = render "shared/footer"
+    = render "shared/analytics"

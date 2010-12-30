@@ -11,3 +11,7 @@
   .block
     <iframe src="http://www.facebook.com/plugins/likebox.php?id=117019225013434&amp;width=200&amp;connections=0&amp;stream=true&amp;header=true&amp;height=427" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:200px; height:427px;" allowTransparency="true"></iframe>
 
+  - if params[:controller].eql?("wods") and %w(index gym user).include?(params[:action])
+    #ads.block
+      = render "shared/sider_ads"
+    
