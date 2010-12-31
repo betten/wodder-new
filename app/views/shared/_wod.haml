@@ -36,3 +36,5 @@
         != sanitize(wod.workout)
       - elsif wod.is_a?(UserWod)
         != clean_user_input(wod.workout)
+      - else
+        != sanitize(wod.workout)
