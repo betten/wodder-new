@@ -21,7 +21,10 @@
     |
     = link_to 'users', users_path
     |
-    = link_to 'new gym', new_gym_path
+    - if @current_user.present? and @current_user.admin?
+      = link_to 'new gym', add_gyms_path
+    - else
+      = link_to 'new gym', new_gym_path
     |
     = link_to 'new wod', new_wod_path
     - if @current_user.present?
