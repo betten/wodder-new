@@ -33,6 +33,16 @@ class User
 
   before_save :hash_password
 
+#  class << self
+#    def that_have_created_wods
+#      criteria.select{ |user| user.wods.present? }
+#    end
+#  end
+
+  def self.all_that_have_created_wods
+    User.all.select{ |user| user.has_wods? }
+  end
+
   def self.authenticate(email, password)
     u = User.first(:conditions => { :email => email })
     return u unless u.nil? or u.password != User.digest(password, u.salt)

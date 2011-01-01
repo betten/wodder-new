@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all
+    @users = User.all_that_have_created_wods
   end
 
   def me
