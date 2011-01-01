@@ -70,7 +70,7 @@ class WodsController < ApplicationController
       wod.points_from << current_user.id.to_s
       wod.save
     end
-    redirect_to :back
+    redirect_to wods_path
   end
 
   def save
