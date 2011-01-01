@@ -7,6 +7,12 @@ class WodsController < ApplicationController
     @wods = Wod.all.within_past_24h.ranked
   end
 
+  def rss
+    @wods = Wod.all.within_past_24h.ranked
+    render :layout => false
+    response.header["Content-Type"] = "application/xml; charset=utf-8"
+  end
+
   def show
     @wod = Wod.find(params[:id])
     @comment = Comment.new

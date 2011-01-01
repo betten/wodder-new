@@ -1,0 +1,21 @@
+xml.instruct!
+
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
+
+	xml.channel do
+
+		xml.title	"Crossfit Wodder - today's wods"
+		xml.link 	"http://wodder.com"
+		xml.description	"All of today's wods, all in one place."
+
+	@wods.each do |wod|
+		xml.item do
+			xml.title	gym.title
+			xml.link	gym.href
+			xml.guid	gym.href
+			xml.description	gym.html.inner_text.gsub(/\n|\r|\t/," ").squeeze(" ").strip
+		end
+	end
+end
+
+end
