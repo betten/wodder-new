@@ -12,7 +12,7 @@
   -@gyms.each do |gym|
     %tr
       %td= gym.name
-      %td= gym.url
+      %td= link_to truncate(gym.url, :length => 20), gym.url, :title => gym.url, :target => "_blank"
       %td.center{ :class => [gym.approved? && "green", !gym.approved? && "red"] }= gym.approved?
       %td.center{ :class => [!gym.has_errors? && "green", gym.has_errors? && "red"] }=gym.has_errors?
       %td.center
@@ -31,7 +31,7 @@
 
 :css
   #admin-table td {
-    padding-right: 16px;
+    padding: 3px 6px 3px 0px;
   }
   #admin-table td.center {
     text-align: center;
@@ -46,3 +46,7 @@
   #admin-table td.green {
     color: #090;
   }
+:javascript
+  $(document).ready(function() {
+    $('#admin-table tr:odd').css('background', '#eee');
+  });
