@@ -15,8 +15,8 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
       elsif wod.is_a?(UserWod)
         xml.title "#{index} - #{wod.title} posted by #{wod.user.username}"
       end
-			xml.link	wod_path(wod)
-			xml.guid	wod_path(wod)
+			xml.link	"http://wodder.com#{wod_path(wod)}"
+			xml.guid	"http://wodder.com#{wod_path(wod)}"
 			xml.description	sanitize(strip_tags(wod.workout))
 		end
 	end

@@ -1,6 +1,6 @@
 todo:
 
-implement rss feed
+(DONE)implement rss feed
 fix upvote redirect / make upvote ajax
 
 (DONE)validate users model to prevent reserved action names as usernames
