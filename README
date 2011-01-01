@@ -1,9 +1,12 @@
 todo:
 
+implement rss feed
+fix upvote redirect / make upvote ajax
+
 (DONE)validate users model to prevent reserved action names as usernames
-add adsense/analytics
-implement cron job for updating gym wods
-write script to transfer current wodder sqlite data to new wodder
+(DONE)add adsense/analytics
+(DONE)implement cron job for updating gym wods
+(DONE)write script to transfer current wodder sqlite data to new wodder
 
 --------------
 
