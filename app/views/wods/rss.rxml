@@ -8,12 +8,16 @@ xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1/" do
 		xml.link 	"http://wodder.com"
 		xml.description	"All of today's wods, all in one place."
 
-	@wods.each do |wod|
+	@wods.each_with_index do |wod, index|
 		xml.item do
-			xml.title	gym.title
-			xml.link	gym.href
-			xml.guid	gym.href
-			xml.description	gym.html.inner_text.gsub(/\n|\r|\t/," ").squeeze(" ").strip
+      if wod.is_a?(GymWod)
+			  xml.title "#{index} - #{wod.gym.name} - #{wod.gym.url}"
+      elsif wod.is_a?(UserWod)
+        xml.title "#{index} - #{wod.title} posted by #{wod.user.username}"
+      end
+			xml.link	wod_path(wod)
+			xml.guid	wod_path(wod)
+			xml.description	sanitize(strip_tags(wod.workout))
 		end
 	end
 end

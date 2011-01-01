@@ -34,6 +34,7 @@ WodderNew::Application.routes.draw do
       get 'user'
       get 'gym'
       get 'saved'
+      get 'rss'
     end
   end
 
