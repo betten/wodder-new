@@ -45,6 +45,11 @@ a {
   text-align: center; }
   #sider .block {
     padding-bottom: 24px; }
+  #sider .signup .text {
+    font-size: 13px; }
+  #sider .signup .link {
+    font-size: 30px;
+    font-weight: bold; }
   #sider .contact {
     font-size: 13px; }
   #sider .donate {
