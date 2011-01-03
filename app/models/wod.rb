@@ -47,12 +47,22 @@ class Wod
   #end
 
   def has_point_from_user?(user)
-    return self.points_from.include?(user.id.to_s) if user.is_a?(User)
-    return self.points_from.include?(user) if user.is_a?(String)
+    user = User.find(user) if user.is_a?(String) # something doesn't feel right here - should do something if user is nil - not sure what
+    return false if user.is_admin?
+    return self.points_from.include?(user.id.to_s) 
   end
 
   def has_comments?
     self.comments.present?
+  end
+
+  def upvote(by_user)
+    return false unless by_user.is_a?(User) or by_user.is_a?(String)
+    return false if has_point_from_user?(by_user)
+    self.points = self.points + 1
+    self.points_from << by_user if by_user.is_a?(String)
+    self.points_from << by_user.id.to_s if by_user.is_a?(User)
+    self.save
   end
 
 end

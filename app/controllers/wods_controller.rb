@@ -65,11 +65,7 @@ class WodsController < ApplicationController
 
   def up_vote
     wod = Wod.find(params[:id])
-    unless wod.has_point_from_user?(current_user) and !current_user.is_admin?
-      wod.points = wod.points + 1;
-      wod.points_from << current_user.id.to_s
-      wod.save
-    end
+    wod.upvote(current_user)
     redirect_to wods_path
   end
 
