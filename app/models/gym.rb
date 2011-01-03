@@ -110,6 +110,7 @@ class Gym
     html.search("img").remove
     html.search("object").remove
     html.search("embed").remove
+    html.search("style").remove
     html = remove_all_attr(html, "style", "align", "id", "color" "font", "class")
     html = convert_to_absolute(html, "a","href")
     html = convert_to_absolute(html, "img","src")
