@@ -10,6 +10,9 @@
   %div= g.label :url
   %div= g.text_field :url
 
+  %div= g.label :wod_url
+  %div= g.text_field :wod_url
+
   %div
     = g.check_box :approved
     = g.label :approved
@@ -43,7 +46,7 @@
       $.post(
         '#{test_xpath_gyms_path}',
         { 
-          url: $('#gym_url').val(),
+          url: $('#gym_wod_url').val() || $('#gym_url').val(),
           xpath: xpath.val()
         }, 
         function(data) {

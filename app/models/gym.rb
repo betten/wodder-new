@@ -8,6 +8,7 @@ class Gym
 
   field :name
   field :url
+  field :wod_url
   field :wod_xpath
   field :current_id
   field :id_xpath
@@ -72,7 +73,8 @@ class Gym
   def check_for_new_wod
     returning Hash.new do |status|
       begin
-        page = Hpricot(open(self.url))
+        url = self.wod_url.present? ? self.wod_url : self.url
+        page = Hpricot(open(url))
         id = page.at(self.id_xpath).to_s
         if id != self.current_id
           self.current_id = id
