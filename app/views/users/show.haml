@@ -17,7 +17,7 @@
     .admin
       .h2 Admin
       %div= @user.email
-      %div= "created: #{@user.created_at}"
+      %div= "created: #{time_ago_in_words(@user.created_at)}"
       %div= "wods: #{@user.wods.count}"
       %div= "comments: #{@user.comments.count}"
       %div= "paid: #{@user.is_paid?}"
