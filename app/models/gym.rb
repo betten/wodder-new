@@ -106,6 +106,7 @@ class Gym
   end
 
   def process_html(html)
+    html.children.each { |e| e.swap e.inner_text if e.kind_of? Hpricot::CData }
     html.search("hr").remove
     html.search("img").remove
     html.search("object").remove
