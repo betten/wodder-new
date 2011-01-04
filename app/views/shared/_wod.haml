@@ -33,7 +33,7 @@
             = link_to 'save', save_wod_path(wod), :class => "link"
     .workout
       - if wod.is_a?(GymWod)
-        != sanitize(wod.workout)
+        != sanitize wod.workout, :attributes => %w(target href)
       - elsif wod.is_a?(UserWod)
         != clean_user_input(wod.workout)
       - else
