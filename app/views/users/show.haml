@@ -13,3 +13,13 @@
       = render :partial => "shared/wod", :locals => { :wod => @wod }
     - else
       %i no wods yet!
+
+    .admin
+      .h2 Admin
+      %div= @user.email
+      %div= "created: #{@user.created_at}"
+      %div= "wods: #{@user.wods.count}"
+      %div= "comments: #{@user.comments.count}"
+      %div= "paid: #{@user.is_paid?}"
+      - if @user.is_paid?
+        %div= "saved: #{@user.saved_wods.count}"
