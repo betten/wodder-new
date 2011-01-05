@@ -1,5 +1,12 @@
 .h1 Gyms
 
-%ul
+#gyms
   - @gyms.each do |g|
-    %li= link_to g.name, gym_path(g)
+    .gym
+      = link_to g.name, gym_path(g)
+      %a.url{ :href => g.url, :target => "_blank" } [&#8599;]
+      added
+      - if g.created_at.present?
+        %strong= "#{time_ago_in_words(g.created_at)} ago"
+      - else
+        %i on day one

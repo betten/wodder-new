@@ -3,9 +3,11 @@
     = @gym.name
     %span.link= link_to "go to #{@gym.name}", @gym.url, :target => "_blank"
     %span.link= link_to "all gyms", gyms_path
-    %span.link= link_to "all wods", wods_path
+    %span.link= link_to "all wods", wods_path  
   - if @gym.created_at
-    .sub= "added to Wodder #{time_ago_in_words(@gym.created_at)} ago"
+    .sub
+      added to Wodder 
+      %strong= "#{time_ago_in_words(@gym.created_at)} ago"
 
   .recent-wods
     .text

@@ -3,6 +3,13 @@
     = @user.username
     %span.link= link_to "all users", users_path
     %span.link= link_to "all wods", wods_path
+  .stats
+    has posted
+    %strong= @user.wods.count
+    = pluralize_word(@user.wods.count, 'wod')
+    for
+    .points= @user.points
+    = pluralize_word(@user.points, 'point')
 
   .recent-wods
     .text 

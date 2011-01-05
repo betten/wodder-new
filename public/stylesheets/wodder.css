@@ -86,7 +86,7 @@ a {
     .wod .points a {
       text-decoration: none; }
     .wod .points .count {
-      color: #f60;
+      color: #ff6600;
       font-weight: bold; }
   .wod .content {
     margin-left: 30px; }
@@ -116,6 +116,12 @@ a {
   font-weight: bold; }
   .gymusershow .title .link {
     font-size: 12px; }
+.gymusershow .stats {
+  font-size: 18px; }
+  .gymusershow .stats .points {
+    color: #ff6600;
+    display: inline;
+    font-weight: bold; }
 .gymusershow .recent-wods {
   padding: 20px 0px; }
   .gymusershow .recent-wods .text {
@@ -148,3 +154,16 @@ a {
 .notice {
   font-style: italic;
   padding: 16px 0px; }
+
+#users .user {
+  padding-bottom: 2px; }
+  #users .user .points {
+    color: #ff6600;
+    display: inline;
+    font-weight: bold; }
+
+#gyms .gym {
+  padding-bottom: 4px; }
+  #gyms .gym a.url {
+    font-size: 12px;
+    text-decoration: none; }

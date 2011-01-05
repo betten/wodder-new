@@ -1,10 +1,17 @@
 .h1 Users
 
-- @users.each do |user|
-  - next if user.is_admin?
-  %div
-    = link_to user.username, user
-    last posted a wod #{time_ago_in_words(user.wods.most_recent.created_at)} ago
+#users
+  - @users.each do |user|
+    - next if user.is_admin?
+    .user
+      = link_to user.username, user
+      has posted
+      %strong= user.wods.count
+      = pluralize_word(user.wods.count, 'wod')
+      for
+      .points= user.points
+      = "#{pluralize_word(user.points, 'point')}, last posted a wod"
+      %strong= "#{time_ago_in_words(user.wods.most_recent.created_at)} ago"
 
-- if @users.blank?
-  %i no users yet! 
+  - if @users.blank?
+    %i no users yet! 
