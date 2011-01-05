@@ -86,6 +86,10 @@ class User
     self.saved_wods.present?
   end
 
+  def points
+    self.wods.inject(0) { |points, wod| points + wod.points }
+  end
+
   protected
 
   def generate_salt
