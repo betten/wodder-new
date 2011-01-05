@@ -40,7 +40,7 @@ class User
 #  end
 
   def self.all_that_have_created_wods
-    User.all.select{ |user| user.has_wods? }
+    User.all.select{ |user| user.has_wods? }.sort { |x,y| y.wods.most_recent.created_at.to_i <=> x.wods.most_recent.created_at.to_i }
   end
 
   def self.authenticate(email, password)
