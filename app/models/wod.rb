@@ -52,6 +52,15 @@ class Wod
     return self.points_from.include?(user.id.to_s) 
   end
 
+  def points_from_users
+    returning [] do |users|
+      self.points_from.each do |from|
+        users << User.first(:conditions => { :id => from })
+      end
+      users.compact!
+    end
+  end
+
   def has_comments?
     self.comments.present?
   end
