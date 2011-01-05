@@ -12,6 +12,12 @@ a {
   font-size: 30px;
   font-weight: bold;
   padding-bottom: 20px;
+  .emph {
+    display: inline;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: normal;
+  }
 }
 .h2 {
   font-size: 20px;
