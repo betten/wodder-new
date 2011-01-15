@@ -6,4 +6,5 @@ tmp/**/*
 public/system
 .DS_Store
 .sass-cache
-
+app/controllers/payments_controller.rb
+spec/controllers/payments_controller_spec.rb
