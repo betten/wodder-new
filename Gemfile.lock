@@ -160,3 +160,4 @@ DEPENDENCIES
   rspec-rails (= 2.3.1)
   ruby-debug
   spork
+  will_paginate (~> 3.0.pre2)

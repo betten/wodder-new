@@ -12,6 +12,7 @@ gem 'mongoid', '2.0.0.beta.17'
 gem 'bson_ext', '1.0.4'
 gem 'hpricot'
 gem 'haml'
+gem "will_paginate", "~> 3.0.pre2"
 
 group :test do
   gem 'rspec-rails', '2.3.1'
