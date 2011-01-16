@@ -3,12 +3,14 @@ class WodsController < ApplicationController
   before_filter :require_signin, :only => [:new, :create, :edit, :update, :destroy, :up_vote, :save, :unsave, :saved]
   before_filter :require_paid, :only => [:save, :unsave, :saved]
 
+  PAGINATE_PER_PAGE = 15
+
   def index
-    @wods = Wod.all.within_past_24h.ranked
+    @wods = Wod.ranked_within_past_24h.paginate :page => params[:page], :per_page => PAGINATE_PER_PAGE
   end
 
   def rss
-    @wods = Wod.all.within_past_24h.ranked
+    @wods = Wod.all.within_past_24h.ordered_by_rank
     render :layout => false
     response.header["Content-Type"] = "application/xml; charset=utf-8"
   end
@@ -47,11 +49,11 @@ class WodsController < ApplicationController
   end
 
   def gym
-    @wods = GymWod.all.within_past_24h.ranked
+    @wods = GymWod.ranked_within_past_24h.paginate :page => params[:page], :per_page => PAGINATE_PER_PAGE
   end
 
   def user
-    @wods = UserWod.all.within_past_24h.ranked
+    @wods = UserWod.ranked_within_past_24h.paginate :page => params[:page], :per_page => PAGINATE_PER_PAGE
   end
 
   def destroy

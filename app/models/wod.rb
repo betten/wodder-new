@@ -5,12 +5,14 @@ class Wod
   field :points, :type => Integer, :default => 0
   field :points_from, :type => Array, :default => []
 
+  attr_accessor :rank
+
   embeds_many :comments
 
   references_many :saved_by, :stored_as => :array, :inverse_of => :saved_wods, :class_name => "User"
 
   class << self
-    def ranked
+    def ordered_by_rank
       criteria.descending(:points)
     end
     def most_recent
@@ -18,6 +20,11 @@ class Wod
     end
     def within_past_24h
       criteria.where(:created_at.gte => ( Time.now - ( 60*60*24 ) ) )
+    end
+    def ranked_within_past_24h
+      wods = self.all.within_past_24h.ordered_by_rank.collect { |w| w }
+      wods.each_with_index { |w, i| w.rank = i + 1 }
+      return wods
     end
   end
 

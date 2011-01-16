@@ -1,8 +1,12 @@
 #ranked-wods
   - if wods.blank?
     %i no wods yet!
-  - wods.each_with_index do |wod, index|
+  - wods.each do |wod|
     .wod-wrapper
-      .rank= (index + 1).to_s + "."
+      .rank= wod.rank.to_s + "."
       = render :partial => "shared/wod", :locals => { :wod => wod }
 
+- unless wods.blank?
+  .paginate
+    .info= page_entries_info @wods, :entry_name => 'wod'
+    .links= will_paginate @wods

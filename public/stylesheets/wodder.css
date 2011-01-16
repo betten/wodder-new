@@ -75,6 +75,11 @@ a {
   padding-left: 6px;
   padding-right: 2px; }
 
+.paginate {
+  padding-top: 30px; }
+  .paginate .info {
+    float: right; }
+
 .wod {
   margin-bottom: 28px;
   overflow: hidden; }
@@ -156,7 +161,7 @@ a {
   padding: 16px 0px; }
 
 #users .user {
-  padding-bottom: 2px; }
+  padding-bottom: 4px; }
   #users .user .points {
     color: #ff6600;
     display: inline;
