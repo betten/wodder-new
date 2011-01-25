@@ -4,11 +4,17 @@ module ApplicationHelper
     text = sanitize(text, { :tags => %w(a) })
     text = auto_link(text)
     text = Hpricot(text)
-    text.search("a").each{ |a| a.raw_attributes["target"] = "_blank" }
+    text.search("a").each do |a| 
+      if a.raw_attributes.present?
+        a.raw_attributes["target"] = "_blank"
+      else
+        a.raw_attributes = { "target" => "_blank" }
+      end
+    end
     text = text.to_s
     text.gsub!(/(\r\n){2,}/, "\r\n\r\n")
     text.gsub!("\r\n", tag('br'))
-    return text
+    return text || ''
   end
 
   # see pluralize source at

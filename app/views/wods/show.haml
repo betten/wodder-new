@@ -15,7 +15,7 @@
           = link_to comment.user.username, comment.user
         = time_ago_in_words(comment.created_at)
         ago
-      .text= comment.text
+      .text!= clean_user_input(comment.text)
 
 .h2 New Comment
 .newcomment
