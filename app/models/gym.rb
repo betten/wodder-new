@@ -78,7 +78,6 @@ class Gym
         id = page.at(self.id_xpath).to_s
         if id != self.current_id
           self.current_id = id
-          self.save
           self.wods.each do |wod|
             wod.destroy
           end
@@ -89,10 +88,10 @@ class Gym
         end
         self.has_errors = false
         self.save
-      rescue
-        self.has_errors = true
-        self.save
-        status[:error] = true
+      #rescue
+      #  self.has_errors = true
+      #  self.save
+      #  status[:error] = true
       end
     end
   end
@@ -129,7 +128,7 @@ class Gym
       uri = e.attributes[attr]
       if uri.match('^http').nil?
         u = URI.parse(self.url)
-        href = u + uri
+        href = u.to_s + uri.to_s
         e.raw_attributes[attr] = href.to_s
       end
     end
