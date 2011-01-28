@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   def require_paid
     unless current_user and current_user.is_paid?
       flash[:must_be_paid] = true
-      redirect_to donate_path
+      redirect_to current_user
     end
   end 
 

@@ -38,6 +38,8 @@
 - unless @current_user.has_saved_wods?
   %div
     %i no wods yet!
-    %a{ :href => "#" } users who donate $5 or more to Crossfit Wodder are able to save wods
+    - unless @current_user.is_paid?
+      -#%a{ :href => "#" } users who donate $5 or more to Crossfit Wodder are able to save wods
+      the ability to save wods on Wodder is coming soon!
 - @current_user.saved_wods.each do |wod|
   = render :partial => "shared/wod", :locals => { :wod => wod }
