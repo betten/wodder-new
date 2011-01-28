@@ -88,10 +88,10 @@ class Gym
         end
         self.has_errors = false
         self.save
-      #rescue
-      #  self.has_errors = true
-      #  self.save
-      #  status[:error] = true
+      rescue
+        self.has_errors = true
+        self.save
+        status[:error] = true
       end
     end
   end
