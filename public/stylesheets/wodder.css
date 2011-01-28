@@ -50,6 +50,8 @@ a {
   text-align: center; }
   #sider .block {
     padding-bottom: 24px; }
+  #sider .info {
+    font-size: 13px; }
   #sider .signup .text {
     font-size: 13px; }
   #sider .signup .link {

@@ -1,4 +1,7 @@
 #sider
+  .info.block
+    Crossfit Wodder is a live feed showing wods posted within the last 24 hours by gyms and users all over the world, ranked by user votes.
+
   - unless @current_user.present?
     .signup.block
       .text want to upvote your favorite wods to the top of the rankings? post your own wods? comments? recommend a new gym to add to the list?
@@ -8,7 +11,7 @@
     Questions? Comments? Feedback?
     %div= link_to "crossfitwodder@gmail.com", "mailto:crossfitwodder@gmail.com"
 
-  .donate.block
+  -#.donate.block
     %div Like Crossfit Wodder? Want to help us going and growing? Donate!
     %div= render "shared/paypal_form" 
     %div Crossfit Wodder shows wods posted within the last 24 hours. Users who donate $5 or more can save wods to be viewed any time.
