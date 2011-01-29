@@ -77,7 +77,7 @@ class WodsController < ApplicationController
       current_user.saved_wods << wod
       current_user.save
     end
-    redirect_to :back
+    redirect_to current_user
   end
 
   def unsave
@@ -89,7 +89,7 @@ class WodsController < ApplicationController
     @current_user.save
     wod.saved_by_ids.delete(@current_user.id)
     wod.save
-    redirect_to :back
+    redirect_to wods_path
   end
 
   def saved
