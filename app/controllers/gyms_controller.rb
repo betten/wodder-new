@@ -4,7 +4,7 @@ class GymsController < ApplicationController
   before_filter :require_admin, :only => [:add, :update, :test_xpath, :admin]
 
   def index
-    @gyms = Gym.all.approved
+    @gyms = Gym.all.approved.descending(:created_at)
   end
 
   def show

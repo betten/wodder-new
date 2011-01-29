@@ -70,6 +70,15 @@ class Gym
     self.created_by_user_id = user.id.to_s if user.is_a?(User)
   end
 
+  def created_at?
+    self.created_at.present?
+  end
+
+  def created_within_last_week?
+    return false unless created_at?
+    (Time.now.to_i - self.created_at.to_i) < 60*60*24*7
+  end
+
   def check_for_new_wod
     returning Hash.new do |status|
       begin
